@@ -14,6 +14,19 @@ module.exports =
     {
         rules:
         [
+            //BABEL
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: 
+                {
+                    loader: 'babel-loader',
+                    options:
+                    {
+                        presets: [ 'env' ] 
+                    }
+                }
+            },
             //CSS BUILD
             {
                 test: /\.css$/,
@@ -21,7 +34,7 @@ module.exports =
             },
             //SASS BUILD
             {
-                test: /\.scss$/,
+                test: /\.(scss|sass)$/,
                 use: [ 'style-loader', 'css-loader', 'sass-loader' ]
             },
             //IMAGES
