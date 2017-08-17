@@ -1,3 +1,6 @@
+# Webpack build folder (auto-generated so better to just build and use locally)
+public/build
+
 # Logs
 logs
 *.log
