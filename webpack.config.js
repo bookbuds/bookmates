@@ -1,52 +1,78 @@
-const path = require( 'path' );
+const path = require('path');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports =
-{
-    entry: './public/js/main.js',
-
-    output:
     {
-        filename: 'bundle.js',
-        path: path.resolve( __dirname, 'public/build' )
-    },
-
-    module:
-    {
-        rules:
+        entry:
         [
-            //BABEL
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: 
+            'webpack-hot-middleware/client',
+            path.resolve(__dirname, 'private/js/main.js'),
+        ],
+        output:
+        {
+            path: '/',
+            publicPath: '/build',
+            filename: 'bundle.js'
+        },
+        devtool: 'cheap-eval-source-map',
+        plugins: [
+            new ExtractTextPlugin('/stylesheets/style.css'),
+            new webpack.optimize.OccurrenceOrderPlugin(),
+            new webpack.HotModuleReplacementPlugin(),
+            new webpack.NoEmitOnErrorsPlugin()
+        ],
+        module:
+        {
+            rules:
+            [
+                //BABEL
                 {
-                    loader: 'babel-loader',
-                    options:
+                    test: /\.js$/,
+                    include: path.resolve(__dirname, 'private/js'),
+                    use:
                     {
-                        presets: [ 'env' ] 
+                        loader: 'babel-loader',
+                        options:
+                        {
+                            presets: ['env']
+                        }
                     }
+                },
+                //CSS BUILD
+                {
+                    test: /\.css$/,
+                    use: ['style-loader', 'css-loader']
+                },
+                //SASS BUILD
+                {
+                    test: /\.(scss|sass)$/,
+                    include: path.resolve(__dirname, 'private/sass'),
+                    use: ExtractTextPlugin.extract({
+                        fallback: 'style-loader',
+                        use: ['css-loader', 'sass-loader']
+                    })
+                },
+                //IMAGES
+                {
+                    test: /\.(png|svg|jpg|gif)$/,
+                    include: path.resolve(__dirname, 'private/images'),
+                    use: 'file-loader'
+                },
+                //URL-LOADER
+                {
+                    test: /\.(png|jpg)$/,
+                    include: path.resolve(__dirname, 'private/images'),
+                    use: [{
+                        loader: 'url-loader',
+                        options: { limit: 10000 } // Convert images < 10k to base64 strings
+                    }]
+                },
+                //FONTS
+                {
+                    test: /\.(woff|woff2|eot|ttf|otf)$/,
+                    loader: 'file-loader'
                 }
-            },
-            //CSS BUILD
-            {
-                test: /\.css$/,
-                use: [ 'style-loader', 'css-loader' ]
-            },
-            //SASS BUILD
-            {
-                test: /\.(scss|sass)$/,
-                use: [ 'style-loader', 'css-loader', 'sass-loader' ]
-            },
-            //IMAGES
-            {
-                test: /\.(png|svg|jpg|gif)$/,
-                use: [ 'file-loader' ]
-            },
-            //FONTS
-            {
-                test: /\.(woff|woff2|eot|ttf|otf)$/,
-                use: [ 'file-loader' ]
-            }
-        ]
-    }
-};
+            ]
+        }
+    };
