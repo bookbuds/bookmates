@@ -23,11 +23,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+//STATIC FILES
 app.use(express.static(path.join(__dirname, 'public')));
 
-//this path is for the built files (from webpack)
-//in theory we should ONLY need this one, so consider removing 'public' above
-//webpack middleware
 if (process.env.NODE_ENV !== 'production') {
     const config = require('./webpack.config.js');
     const compiler = webpack(config);
@@ -41,7 +40,7 @@ if (process.env.NODE_ENV !== 'production') {
         log: console.log,
     }));
 } else {
-    app.use(express.static(path.join(__dirname, 'public')));
+    app.use(express.static(path.join(__dirname, 'public')));    
 }
 
 
