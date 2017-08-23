@@ -8,9 +8,6 @@ const bodyParser = require('body-parser');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 
-const index = require('./routes/index');
-const users = require('./routes/users');
-
 const app = express();
 
 // view engine setup
@@ -43,9 +40,11 @@ if (process.env.NODE_ENV !== 'production') {
     app.use(express.static(path.join(__dirname, 'public')));    
 }
 
+// app.use('/', index);
+// app.use('/users', users);
 
-app.use('/', index);
-app.use('/users', users);
+// controllers
+app.use( require( './controllers' ) );
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
