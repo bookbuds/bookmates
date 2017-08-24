@@ -10,7 +10,7 @@ function Book( tSequelize, tDataTypes )
         {
             type: tDataTypes.STRING,
             allowNull: false,
-            vaidate:
+            validate:
             {
                 len: [ 1, 140 ]
             }
@@ -19,7 +19,7 @@ function Book( tSequelize, tDataTypes )
         author:
         {
             type: tDataTypes.STRING,
-            vaidate:
+            validate:
             {
                 len: [ 1, 140 ]
             }
