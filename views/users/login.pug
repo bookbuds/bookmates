@@ -1,9 +1,16 @@
-extends ../layouts/layout.pug
+include ../layouts/layout.pug
 
 block headerscripts
 
 block content
-  h1 login
-  p this is where i'll let you in, in return for a secret...
+    .login-container
+        form.login(method="post" action="/login")
+            div.form-group
+                label.input-label(for="username") Username
+                input(type="text" name="username" placeholder="Enter your username" maxlength="25" required)
+            div.form-group
+                label.input-label(for="password") Password
+                input(type="text" name="password" placeholder="Enter your password" maxlength="100"  required)
+            button(type="submit") Submit
 
 block footerscripts
