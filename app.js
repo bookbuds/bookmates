@@ -8,9 +8,6 @@ const bodyParser = require('body-parser');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 
-const index = require('./routes/index');
-const users = require('./routes/users');
-
 const app = express();
 
 // view engine setup
@@ -44,25 +41,31 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 
-app.use('/', index);
-app.use('/users', users);
+//=========================
+// CONTROLLER
+//=========================
+app.use( require( './controllers' ) );
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+//=========================
+// 404 ERROR HANDLER
+//=========================
+app.use( function ( tRequest, tResponse, tNext ) 
+{
+    var tempError = new Error( 'Not Found' );
+    tempError.status = 404;
+    tNext( tempError );
 });
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use( function ( tError, tRequest, tResponse, tNext ) 
+{
     // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    tResponse.locals.message = tError.message;
+    tResponse.locals.error = tRequest.app.get( 'env' ) === 'development' ? tError : {};
 
     // render the error page
-    res.status(err.status || 500);
-    res.render('error');
+    tResponse.status( tError.status || 500 );
+    tResponse.render( 'error' );
 });
 
 module.exports = app;
