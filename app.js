@@ -10,11 +10,15 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 
 const app = express();
 
-// view engine setup
+//=========================
+// VIEW ENGINE
+//=========================
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-// uncomment after placing your favicon in /public
+//=========================
+// MIDDLEWARE
+//=========================
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -39,7 +43,6 @@ if (process.env.NODE_ENV !== 'production') {
 } else {
     app.use(express.static(path.join(__dirname, 'public')));    
 }
-
 
 //=========================
 // CONTROLLER
