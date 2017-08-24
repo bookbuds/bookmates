@@ -9,7 +9,7 @@ function User( tSequelize, tDataTypes )
         first_name:
         {
             type: tDataTypes.STRING,
-            vaidate:
+            validate:
             {
                 len: [ 1, 140 ]
             }
@@ -18,7 +18,7 @@ function User( tSequelize, tDataTypes )
         last_name:
         {
             type: tDataTypes.STRING,
-            vaidate:
+            validate:
             {
                 len: [ 1, 140 ]
             }
