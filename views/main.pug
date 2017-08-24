@@ -1,0 +1,46 @@
+extends layouts/layout
+
+block headerscripts
+
+block content
+    #main
+        .sidebar__user
+            .sidebar__user-wrapper
+                .sidebar__user-avatar
+                    img(src='holder.js/200x200')
+                .sidebar__user-info
+                    h3.user__name theDudette
+                    p.user__info Female
+                    p.user__location Atlanta, GA
+                    button.user__message Message
+        .main__books
+            h1 Books Header
+            .main__bookshelf
+                .bookshelf__reading
+                    .main__books-wrapper
+                        img(src="holder.js/125x200")
+                        p.books__title Generic Title
+                        p.books__author Boring Author
+                    .main__books-wrapper
+                        img(src="holder.js/125x200")
+                        p.books__title Generic Title
+                        p.books__author Boring Author
+                    .main__books-wrapper
+                        img(src="holder.js/125x200")
+                        p.books__title Generic Title
+                        p.books__author Boring Author
+                    .main__books-wrapper
+                        img(src="holder.js/125x200")
+                        p.books__title Generic Title
+                        p.books__author Boring Author
+                .bookshelf__want-to-read
+                    - var n = 0
+                    while n < 10
+                        .main__books-wrapper
+                            img(src="holder.js/125x200")
+                            p.books__title Generic Title
+                            p.books__author Boring Author
+                        - n++
+
+
+block footerscripts

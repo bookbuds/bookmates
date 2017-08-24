@@ -10,6 +10,7 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 
 const index = require('./routes/index');
 const users = require('./routes/users');
+const main = require('./routes/main')
 
 const app = express();
 
@@ -47,6 +48,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/main', main);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
