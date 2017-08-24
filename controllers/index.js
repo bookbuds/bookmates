@@ -17,6 +17,11 @@ router.use( '/login', require( './users/login' ) );
 router.use( '/dashboard', require( './users/dashboard' ) );
 
 //=========================
+// SEARCH ROUTES
+//=========================
+router.use( '/search', require( './search/search' ) );
+
+//=========================
 // API ROUTES
 //=========================
 router.use( '/api/v1/messages', require( './api/messages' ) );
