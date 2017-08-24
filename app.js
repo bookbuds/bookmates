@@ -8,10 +8,6 @@ const bodyParser = require('body-parser');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 
-const index = require('./routes/index');
-const users = require('./routes/users');
-const main = require('./routes/main')
-
 const app = express();
 
 // view engine setup
@@ -24,11 +20,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+//STATIC FILES
 app.use(express.static(path.join(__dirname, 'public')));
 
-//this path is for the built files (from webpack)
-//in theory we should ONLY need this one, so consider removing 'public' above
-//webpack middleware
 if (process.env.NODE_ENV !== 'production') {
     const config = require('./webpack.config.js');
     const compiler = webpack(config);
@@ -42,30 +37,35 @@ if (process.env.NODE_ENV !== 'production') {
         log: console.log,
     }));
 } else {
-    app.use(express.static(path.join(__dirname, 'public')));
+    app.use(express.static(path.join(__dirname, 'public')));    
 }
 
 
-app.use('/', index);
-app.use('/users', users);
-app.use('/main', main);
+//=========================
+// CONTROLLER
+//=========================
+app.use( require( './controllers' ) );
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+//=========================
+// 404 ERROR HANDLER
+//=========================
+app.use( function ( tRequest, tResponse, tNext ) 
+{
+    var tempError = new Error( 'Not Found' );
+    tempError.status = 404;
+    tNext( tempError );
 });
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use( function ( tError, tRequest, tResponse, tNext ) 
+{
     // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    tResponse.locals.message = tError.message;
+    tResponse.locals.error = tRequest.app.get( 'env' ) === 'development' ? tError : {};
 
     // render the error page
-    res.status(err.status || 500);
-    res.render('error');
+    tResponse.status( tError.status || 500 );
+    tResponse.render( 'error' );
 });
 
 module.exports = app;
