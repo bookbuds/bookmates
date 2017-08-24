@@ -2,16 +2,16 @@ const express = require( 'express' );
 const router = express.Router();
 
 //=========================
-// GET
+// GET MESSAGES
 //=========================
-router.get( '/', onRegister );
+router.get( '/', onGetMessages );
 
-function onRegister( tRequest, tResponse )
+function onGetMessages( tRequest, tResponse )
 {
-    tResponse.render( 'users/register' );
+    tResponse.json( { messageId: 1, messageText: "hey" } );
 }
 
 //=========================
-// EXPORT
+// EXPORTS
 //=========================
 module.exports = router

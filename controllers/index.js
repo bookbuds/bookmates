@@ -12,8 +12,16 @@ router.get('/', function( tRequest, tResponse )
 //=========================
 // USER ROUTES
 //=========================
-// router.use( '/register', require( './users/signup' ) );
-// router.use('/login', require( './users/login' ) );
-// router.use( '/logout', require( './users/logout' ) );
+router.use( '/register', require( './users/register' ) );
+router.use( '/login', require( './users/login' ) );
+router.use( '/dashboard', require( './users/dashboard' ) );
 
+//=========================
+// API ROUTES
+//=========================
+router.use( '/api/v1/messages', require( './api/messages' ) );
+
+//=========================
+// EXPORTS
+//=========================
 module.exports = router;
