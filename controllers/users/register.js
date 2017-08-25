@@ -20,10 +20,10 @@ function onRegister( tRequest, tResponse )
 //=========================
 router.post( '/', onCreateUser );
 
+//TODO break this up into smaller chunks
 function onCreateUser( tRequest, tResponse )
-{
-    //console.log( tRequest.body );
-    
+{    
+    //create a temporary user that we will post to the db
     let tempUser = 
     {
         user_name: tRequest.body.username,
@@ -31,13 +31,31 @@ function onCreateUser( tRequest, tResponse )
         password: tRequest.body.password
     }
 
-    db.User.create( tempUser ).then( onUserCreated );
+    if( tempUser.password != null )
+    {
+        bcrypt.genSalt( saltRounds, onSaltComplete )
+    }
 
-    function onUserCreated( tStatus, tData )
+    function onSaltComplete( tError, tSalt )
+    {
+        bcrypt.hash( tempUser.password, tSalt, function( tError, tHash ) 
+        {
+            tempUser.password = tHash;
+            createUser( tempUser )
+        });
+    }
+
+    //push new user to the db
+    function createUser( tUser )
+    {
+        db.User.create( tUser ).then( onUserCreated );
+    }
+    
+    //on user created completed
+    function onUserCreated( tStatus )
     {
         console.log( 'creatue new user status:' );
         console.log( tStatus.dataValues );
-        console.log( tData );
     }
 }
 
