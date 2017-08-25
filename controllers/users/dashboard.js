@@ -1,5 +1,6 @@
 const express = require( 'express' );
 const router = express.Router();
+const db = require('../../models')
 
 //=========================
 // GET DEFAULT
@@ -8,6 +9,16 @@ router.get( '/',  onDashboard );
 
 function onDashboard( tRequest, tResponse )
 {
+    let id = '1'
+    let status = 'read'
+
+    db.userBooks.findAll({
+        where: {
+            id,
+            status
+        }
+    })
+
     tResponse.render( 'users/dashboard' );
 }
 
