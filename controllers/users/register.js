@@ -56,6 +56,9 @@ function onCreateUser( tRequest, tResponse )
     {
         console.log( 'creatue new user status:' );
         console.log( tStatus.dataValues );
+
+        //return to this page for now (reset fields)
+        tResponse.redirect( '/register' );
     }
 }
 
