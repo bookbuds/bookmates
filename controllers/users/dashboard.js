@@ -9,17 +9,20 @@ router.get( '/',  onDashboard );
 
 function onDashboard( tRequest, tResponse )
 {
-    let id = '1'
+    let UserId = '1'
     let status = 'read'
 
-    db.userBooks.findAll({
+    db.UserBook.findAll({
         where: {
-            id,
-            status
+            UserId,
         }
-    })
+    }).then((results) => {
+        console.log(results);
 
-    tResponse.render( 'users/dashboard' );
+        tResponse.render( 'users/dashboard' );
+    }).catch(err => {
+        console.log(err)
+    })
 }
 
 //=========================
