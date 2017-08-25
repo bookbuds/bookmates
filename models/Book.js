@@ -1,14 +1,14 @@
 //=========================
 // BOOK MODEL
 //=========================
-function Book( tSequelize, tDataTypes )
+function Book( sequelize, DataTypes )
 {
     //object with the data field assignments
     const bookData = 
     {
         title:
         {
-            type: tDataTypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
             validate:
             {
@@ -18,17 +18,17 @@ function Book( tSequelize, tDataTypes )
 
         author:
         {
-            type: tDataTypes.STRING,
+            type: DataTypes.STRING,
             validate:
             {
                 len: [ 1, 140 ]
             }
         },
 
-        img_url: tDataTypes.STRING
+        img_url: DataTypes.STRING
     }
 
-    const tempBook = tSequelize.define( "Book", bookData );
+    const tempBook = sequelize.define( "Book", bookData );
 
     //SET UP LINK TABLE
     tempBook.associate = function( tModels )

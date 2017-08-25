@@ -11,7 +11,8 @@ function UserBooks( tSequelize, tDataTypes )
             type: tDataTypes.STRING,
             validate:
             {
-                len: [ 1, 140 ]
+                len: [ 1, 140 ],
+                // isIn: [['read', 'reading', 'wantToRead']]
             }
         }
     }

@@ -1,14 +1,14 @@
 //=========================
 // USER MODEL
 //=========================
-function User( tSequelize, tDataTypes )
+function User( sequelize, DataTypes )
 {
     //object with the data field assignments
     const userData = 
     {
         first_name:
         {
-            type: tDataTypes.STRING,
+            type: DataTypes.STRING,
             validate:
             {
                 len: [ 1, 140 ]
@@ -17,7 +17,7 @@ function User( tSequelize, tDataTypes )
 
         last_name:
         {
-            type: tDataTypes.STRING,
+            type: DataTypes.STRING,
             validate:
             {
                 len: [ 1, 140 ]
@@ -26,18 +26,39 @@ function User( tSequelize, tDataTypes )
 
         user_name:
         {
-            type: tDataTypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
-            vaidate:
+            validate:
             {
                 len: [ 1, 140 ]
             }
         },
 
-        profile_img_url: tDataTypes.STRING
+        email:
+        {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate:
+            {
+                len: [ 3, 140 ]
+            }
+
+        },
+
+        password:
+        {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate:
+            {
+                len: [ 8, 100 ]
+            }
+        },
+
+        profile_img_url: DataTypes.STRING
     }
 
-    const tempUser = tSequelize.define( "User", userData );
+    const tempUser = sequelize.define( "User", userData );
 
     //SET UP LINK TABLE
     tempUser.associate = function( tModels )
