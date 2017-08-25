@@ -1,14 +1,14 @@
 //=========================
 // USERBOOK MODEL
 //=========================
-function UserBook( tSequelize, tDataTypes )
+function UserBook( sequelize, DataTypes )
 {
     //object with the data field assignments
     const userBookData = 
     {
         status:
         {
-            type: tDataTypes.STRING,
+            type: DataTypes.STRING,
             validate:
             {
                 len: [ 1, 140 ],
@@ -17,7 +17,7 @@ function UserBook( tSequelize, tDataTypes )
         }
     }
 
-    const userBook = tSequelize.define( "UserBook", userBookData );
+    const userBook = sequelize.define( "UserBook", userBookData );
 
     return userBook;
 }

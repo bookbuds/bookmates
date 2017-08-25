@@ -63,7 +63,7 @@ function User( sequelize, DataTypes )
     //SET UP LINK TABLE
     tempUser.associate = function( tModels )
     {
-        tempUser.belongsToMany( tModels.Book, { through: 'UserBooks' } );
+        tempUser.belongsToMany( tModels.Book, { through: 'UserBook' } );
     }
 
     return tempUser;
