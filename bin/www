@@ -25,7 +25,7 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-db.sequelize.sync().then( initServer );
+db.sequelize.sync( {force: true }).then( initServer );
 
 //Start the server after DB set up
 function initServer()
