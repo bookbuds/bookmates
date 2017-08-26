@@ -1,4 +1,7 @@
-const express = require('express');
+const express = require( 'express' );
+const expressSession = require( 'express-session' );
+const passport = require( 'passport' );
+const auth = require( './controllers/auth/auth.js' );
 const webpack = require('webpack');
 const path = require('path');
 const favicon = require('serve-favicon');
@@ -19,11 +22,14 @@ app.set('view engine', 'pug');
 //=========================
 // MIDDLEWARE
 //=========================
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
+app.use( favicon( path.join( __dirname, 'public', 'favicon.ico' ) ) );
+app.use( logger( 'dev' ) );
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use( bodyParser.urlencoded( { extended: false } ) );
+app.use( cookieParser() );
+app.use( expressSession( { secret: "My Secret Book" } ) );
+app.use( passport.initialize() );
+app.use( passport.session() );
 
 //STATIC FILES
 app.use(express.static(path.join(__dirname, 'public')));
