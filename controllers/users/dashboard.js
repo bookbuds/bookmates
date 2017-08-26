@@ -12,17 +12,8 @@ function onDashboard( tRequest, tResponse )
     let UserId = '1'
     let status = 'read'
 
-    db.UserBook.findAll({
-        where: {
-            UserId,
-        }
-    }).then((results) => {
-        console.log(results);
+    db.User.findAll({include: [{model: db.Book}]}).then(results => console.log(results)).catch(err => console.log(err));
 
-        tResponse.render( 'users/dashboard' );
-    }).catch(err => {
-        console.log(err)
-    })
 }
 
 //=========================
