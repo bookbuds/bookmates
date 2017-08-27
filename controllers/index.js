@@ -6,7 +6,9 @@ const router = express.Router();
 //=========================
 router.get('/', function( tRequest, tResponse )
 {
-    tResponse.render( 'index', { user: tRequest.user } );
+    let user = tRequest.user ? tRequest.user.user_name : undefined
+
+    tResponse.render( 'index', { user: user } );
 });
 
 //=========================

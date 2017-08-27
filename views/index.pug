@@ -3,6 +3,10 @@ extends layouts/layout
 block headerscripts
 
 block content
+  if user != undefined
+    h1 Hello, #{user}
+  else
+    h1 Sign Up!
 
 block footerscripts
     script(src="https://code.jquery.com/jquery-3.2.1.min.js"
