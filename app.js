@@ -2,14 +2,14 @@ const express = require( 'express' );
 const expressSession = require( 'express-session' );
 const passport = require( './config/passport.config' );
 const flash = require( 'connect-flash' );
-const webpack = require('webpack');
-const path = require('path');
-const favicon = require('serve-favicon');
-const logger = require('morgan');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
+const webpack = require( 'webpack' );
+const path = require( 'path' );
+const favicon = require( 'serve-favicon' );
+const logger = require( 'morgan' );
+const cookieParser = require( 'cookie-parser' );
+const bodyParser = require( 'body-parser' );
+const webpackDevMiddleware = require( 'webpack-dev-middleware' );
+const webpackHotMiddleware = require( 'webpack-hot-middleware' );
 
 //SERVER
 const app = express();
@@ -17,28 +17,28 @@ const app = express();
 //=========================
 // VIEW ENGINE
 //=========================
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+app.set( 'views', path.join( __dirname, 'views' ) );
+app.set( 'view engine', 'pug' );
 
 //=========================
 // STATIC FILES
 //=========================
-app.use(express.static(path.join(__dirname, 'public')));
+app.use( express.static( path.join( __dirname, 'public' ) ) );
 
-if (process.env.NODE_ENV !== 'production') {
-    const config = require('./webpack.config.js');
-    const compiler = webpack(config);
-    app.use(webpackDevMiddleware(compiler, {
+if ( process.env.NODE_ENV !== 'production' ) {
+    const config = require('./webpack.config.js' );
+    const compiler = webpack( config );
+    app.use( webpackDevMiddleware( compiler, {
         publicPath: config.output.publicPath,
         stats: {
             colors: true,
         },
     }))
-    app.use(webpackHotMiddleware(compiler, {
+    app.use( webpackHotMiddleware( compiler, {
         log: console.log,
     }));
 } else {
-    app.use(express.static(path.join(__dirname, 'public')));    
+    app.use( express.static( path.join( __dirname, 'public' ) ) );    
 }
 
 //=========================
@@ -51,6 +51,9 @@ app.use( bodyParser.urlencoded( { extended: false } ) );
 app.use( cookieParser() );
 app.use( flash() );
 app.use( expressSession( { secret: "My Secret Book" } ) );
+
+app.use( passport.initialize() );
+app.use( passport.session() );
 
 //=========================
 // CONTROLLER
@@ -78,8 +81,5 @@ app.use( function ( tError, tRequest, tResponse, tNext )
     tResponse.status( tError.status || 500 );
     tResponse.render( 'error' );
 });
-
-app.use( passport.initialize() );
-app.use( passport.session() );
 
 module.exports = app;

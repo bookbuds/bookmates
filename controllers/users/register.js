@@ -32,27 +32,12 @@ function onCreateUser( tRequest, tResponse )
     //passwordHasher
     console.log( passwordHasher );
     console.log( passwordHasher.hashPassword );
-    
-    passwordHasher.hashPassword( tempUser.password ).then( tPassword =>
+
+    passwordHasher.hashPassword( tempUser.password ).then( tHashedPassword =>
     {
-        tempUser.password = tPassword;
+        tempUser.password = tHashedPassword;
         createUser( tempUser );
     });
-
-
-    // if( tempUser.password != null )
-    // {
-    //     bcrypt.genSalt( saltRounds, onSaltComplete )
-    // }
-
-    // function onSaltComplete( tError, tSalt )
-    // {
-    //     bcrypt.hash( tempUser.password, tSalt, function( tError, tHash ) 
-    //     {
-    //         tempUser.password = tHash;
-    //         createUser( tempUser )
-    //     });
-    // }
 
     //push new user to the db
     function createUser( tUser )
