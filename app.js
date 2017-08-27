@@ -9,6 +9,7 @@ const favicon = require( 'serve-favicon' );
 const logger = require( 'morgan' );
 const cookieParser = require( 'cookie-parser' );
 const bodyParser = require( 'body-parser' );
+const errorHandler = require( './middleware/error-handler' );
 const webpackDevMiddleware = require( 'webpack-dev-middleware' );
 const webpackHotMiddleware = require( 'webpack-hot-middleware' );
 
@@ -24,7 +25,7 @@ app.set( 'view engine', 'pug' );
 //=========================
 // STATIC FILES
 //=========================
-app.use( express.static( path.join( __dirname, 'public' ) ) );
+//app.use( express.static( path.join( __dirname, 'public' ) ) );
 
 if ( process.env.NODE_ENV !== 'production' ) {
     const config = require('./webpack.config.js' );
@@ -52,7 +53,6 @@ app.use( bodyParser.urlencoded( { extended: false } ) );
 app.use( cookieParser() );
 app.use( flash() );
 app.use( expressSession( { secret: "My Secret Book" } ) );
-
 app.use( passport.initialize() );
 app.use( passport.session() );
 
@@ -61,26 +61,11 @@ app.use( passport.session() );
 //=========================
 app.use( require( './controllers' ) );
 
+
 //=========================
 // 404 ERROR HANDLER
 //=========================
-app.use( function ( tRequest, tResponse, tNext ) 
-{
-    var tempError = new Error( 'Not Found' );
-    tempError.status = 404;
-    tNext( tempError );
-});
-
-// error handler
-app.use( function ( tError, tRequest, tResponse, tNext ) 
-{
-    // set locals, only providing error in development
-    tResponse.locals.message = tError.message;
-    tResponse.locals.error = tRequest.app.get( 'env' ) === 'development' ? tError : {};
-
-    // render the error page
-    tResponse.status( tError.status || 500 );
-    tResponse.render( 'error' );
-});
+app.use( errorHandler.errorCatcher );
+app.use( errorHandler.errorDisplay );
 
 module.exports = app;

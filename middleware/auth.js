@@ -1,3 +1,6 @@
+//=========================
+// USER AUTH CHECK
+//=========================
 function isAuth( tRequest, tResponse, tNext )
 {
     //check if there is a user (or, if a user is auth'd)
@@ -10,4 +13,7 @@ function isAuth( tRequest, tResponse, tNext )
     return tResponse.redirect( "/login" );
 }
 
+//=========================
+// EXPORTS
+//=========================
 module.exports = isAuth;

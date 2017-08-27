@@ -33,7 +33,6 @@ passport.use( 'local-login', new LocalStrategy (
 		//wait a tick
 		process.nextTick( function()
 		{
-			console.log( 'passport.use: how many times do i run?' );
 			db.User.findOne( { where: { user_name: tUsername } } ).then( tempUser =>
 			{
 				//if no user could be found
