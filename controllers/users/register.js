@@ -1,9 +1,7 @@
 const express = require( 'express' );
 const db = require( '../../models' );
-const bcrypt = require( 'bcrypt' );
+const passwordHasher = require( '../password-hasher.js' );
 const router = express.Router();
-
-const saltRounds = 12;
 
 //=========================
 // GET
@@ -31,19 +29,15 @@ function onCreateUser( tRequest, tResponse )
         password: tRequest.body.password
     }
 
-    if( tempUser.password != null )
-    {
-        bcrypt.genSalt( saltRounds, onSaltComplete )
-    }
+    //passwordHasher
+    console.log( passwordHasher );
+    console.log( passwordHasher.hashPassword );
 
-    function onSaltComplete( tError, tSalt )
+    passwordHasher.hashPassword( tempUser.password ).then( tHashedPassword =>
     {
-        bcrypt.hash( tempUser.password, tSalt, function( tError, tHash ) 
-        {
-            tempUser.password = tHash;
-            createUser( tempUser )
-        });
-    }
+        tempUser.password = tHashedPassword;
+        createUser( tempUser );
+    });
 
     //push new user to the db
     function createUser( tUser )
