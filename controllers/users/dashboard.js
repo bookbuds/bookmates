@@ -1,4 +1,4 @@
-const db = require( '../../models' );
+const db = require( '../../models' )
 const isAuth = require( '../../middleware/auth' );
 const express = require( 'express' );
 const router = express.Router();
@@ -13,17 +13,16 @@ function onDashboard( tRequest, tResponse )
     //let UserId = '1'
     //let status = 'read'
 
+
     db.User.findAll(
         {
-            include: [{model: db.Book, required: true}]
+            where: {id: 1},
+            attributes: [],
+            include: [{model: db.Book, required: true, attributes: ['title', 'author', 'img_url']}],
+            raw: true
         }).then(results => {
-            console.log(results[0].dataValues.Books)
-            let books = results[0].dataValues.Books
-            let book = {
-                title: books[0].dataValues.Title,
-                author: books[0].dataValues.Author
-            }
-            tResponse.render('users/dashboard', {book})
+            console.log(results);
+            tResponse.render('users/dashboard', {results: results})
         }
         ).catch(err => console.log(err));
 
