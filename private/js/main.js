@@ -3,26 +3,23 @@ import '../../node_modules/holderjs/holder.js'
 
 console.log('im wide awake - its morning');
 
+$(document).ready(function () {
 
-// var $ = require('jQuery');
-// var parseString = require('xml2js').parseString;
-// var xml2js = require('xml2js');
+    $('.search').on('click', function(e){
+        e.preventDefault();
+    
+        let query = $('.query').val()
 
-// var goodreadsKey = "vgXMPZsQvQc9pfKqedhA";
+        $.ajax({
+            url: '/search/'+query,
+            method: 'POST'
+        }).then((results) => {
+            console.log(results);
+        })
 
-// $(document).ready(function () {
-// 	var search = "Game of Thrones"
-// 	var queryURL = "https://www.goodreads.com/search.xml?key=" + goodreadsKey + "&q=" + search;
+    })
+})
 
-// 	$.ajax({
-// 		url: queryURL,
-// 		method: 'GET'
-// 	}).done(function (response) {
-// 		console.log(response);
-// 		xml2js.parseString(response)
-// 		console.log(response);
-// 	});
-// });
 if (module.hot) {
-	module.hot.accept()
+    module.hot.accept()
 }

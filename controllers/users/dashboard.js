@@ -12,7 +12,19 @@ function onDashboard( tRequest, tResponse )
     let UserId = '1'
     let status = 'read'
 
-    db.User.findAll({include: [{model: db.Book}]}).then(results => console.log(results)).catch(err => console.log(err));
+    db.User.findAll(
+        {
+            include: [{model: db.Book, required: true}]
+        }).then(results => {
+            console.log(results[0].dataValues.Books)
+            let books = results[0].dataValues.Books
+            let book = {
+                title: books[0].dataValues.Title,
+                author: books[0].dataValues.Author
+            }
+            tResponse.render('users/dashboard', {book})
+        }
+        ).catch(err => console.log(err));
 
 }
 
