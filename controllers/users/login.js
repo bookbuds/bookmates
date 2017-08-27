@@ -1,11 +1,8 @@
 const express = require( 'express' );
-const bcrypt = require( 'bcrypt' );
 const router = express.Router();
 
 //FOR AUTH
-const db = require( '../../models' );
 const passport = require( 'passport' );
-// const LocalStrategy = require( 'passport-local' ).Strategy;
 
 //=========================
 // GET
@@ -14,20 +11,18 @@ router.get( '/', onLogin );
 
 function onLogin( tRequest, tResponse )
 {
-    tResponse.render( 'users/login' );
+    tResponse.render( 'users/login', { message: tRequest.flash( 'error' ) } );
 }
 
 //=========================
 // POST (user login)
 //=========================
-router.post( '/', passport.authenticate( 'local-login' ) );
-
-function onUserLogin( tRequest, tResponse )
+router.post( '/', passport.authenticate( 'local-login',
 {
-    const username = tRequest.body.username;
-    const password = tRequest.body.password;
-}
-
+    successRedirect : '/dashboard',
+    failureRedirect : '/login',
+    failureFlash : true
+}));
 
 //=========================
 // EXPORT
