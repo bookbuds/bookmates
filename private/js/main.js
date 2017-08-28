@@ -1,24 +1,23 @@
 import '../sass/style.scss';
-import '../../node_modules/holderjs/holder.js'
+import '../../node_modules/holderjs/holder.js';
+import './search.js';
 
 console.log( 'im wide awake - its morning' );
 
-$(document).ready(function () {
+//THIS WONT RELOAD THE PAGE - GOTTA USE THE get method override hack for that
+// $(document).ready(function () {
 
-    $('.search').on('click', function(e){
-        e.preventDefault();
+//     $( '.search' ).on( 'click', function( e ){
+//         e.preventDefault();
     
-        let query = $('.query').val()
+//         let tempQuery = $('.query').val()
 
-        $.ajax({
-            url: '/search/'+query,
-            method: 'POST'
-        }).then((results) => {
-            console.log(results);
-        })
-
-    })
-})
+//         $.post({
+//             url: '/search',
+//             data: { query: tempQuery }
+//         });
+//     })
+// })
 
 if (module.hot) {
     module.hot.accept()
