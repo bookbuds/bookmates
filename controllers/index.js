@@ -16,6 +16,7 @@ router.get('/', function( tRequest, tResponse )
 //=========================
 router.use( '/register', require( './users/register' ) );
 router.use( '/login', require( './users/login' ) );
+router.use( '/user', require( './users/user' ) );
 router.use( '/dashboard', require( './users/dashboard' ) );
 
 //=========================

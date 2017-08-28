@@ -18,22 +18,29 @@ module.exports = {
             status: 'read',
             createdAt: new Date(),
             updatedAt: new Date(),
-            BookId: '1',
-            UserId: '1'
+            BookId: 1,
+            UserId: 1
         },
         {
             status: 'read',
             createdAt: new Date(),
             updatedAt: new Date(),
-            BookId: '2',
-            UserId: '1'
+            BookId: 2,
+            UserId: 1
         },
         {
             status: 'wantToRead',
             createdAt: new Date(),
             updatedAt: new Date(),
-            BookId: '3',
-            UserId: '1'
+            BookId: 3,
+            UserId: 1
+        },
+        {
+            status: 'reading',
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            BookId: 4,
+            UserId: 1
         },
     ])
   },
