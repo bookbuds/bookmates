@@ -4,15 +4,15 @@ block headerscripts
 
 block content
     #main
-        .sidebar__user
-            .sidebar__user-wrapper
-                .sidebar__user-avatar
+        .sidebar__profile
+            .sidebar__profile-wrapper
+                .sidebar__profile-avatar
                     img(src=profileImage alt="profile image")
-                .sidebar__user-info
-                    h3.user__name= username
-                    p.user__info Female
-                    p.user__location Atlanta, GA
-                    button.user__message Message
+                .sidebar__profile-info
+                    h3.profile__name= username
+                    p.profile__info Female
+                    p.profile__location Atlanta, GA
+                    button.profile__message Message
         .main__books
             h1 Bookshelf 
             .main__bookshelf
@@ -46,5 +46,6 @@ block content
                                     img(src=imgurl alt="image")
                                     p.books__title= title
                                     p.books__author= author
+        .sidebar__users
                                     
 block footerscripts

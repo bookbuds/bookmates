@@ -1,35 +1,9 @@
-*
-    box-sizing: border-box
-
-body, html 
-  left: 0
-  top: 0
-  margin: 0px
-  padding: 0px
-  font-family: 'Roboto', sans-serif
-  height: 100%
-  width: 100%
-
-h1, h2, h3, h4, h5 
-  letter-spacing: 0.8px
-  font-family: 'Roboto Slab', serif
-
-p 
-  letter-spacing: 0.5px
-  font-size: 13px
-  line-height: 16px
-  font-weight: 300
-
-a
-    margin: 10px
-    display: block
-
 #main
     display: flex
     align-items: stretch
     border: 1px solid red
 
-.sidebar__user
+.sidebar__profile
     text-align: center
     width: 250px
     padding: 20px
@@ -41,10 +15,12 @@ a
     margin: 0 50px
     border: 1px solid red
     width: 100%
+    transition: width 1s
+    &--active
+        width: 75%
     h1
         padding: 50px
         font-size: 36px
-        line-height: 
 
 .main__bookshelf
     min-height: 100%
@@ -56,12 +32,12 @@ a
     flex-wrap: wrap
     align-items: flex-start
     border: 1px solid #ccc
+
 .main__books-wrapper
     text-align: center
     margin: 15px
     img
         margin: 5px
-
 
 .books__title
     font-weight: bold
@@ -69,3 +45,11 @@ a
 
 .books__author
     font-style: italic
+
+.sidebar__users
+    background-color: #ccc
+    height: 100%
+    width: 0%
+    transition: width 1s
+    &--active
+        width: 25%

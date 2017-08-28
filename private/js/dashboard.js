@@ -16,6 +16,6 @@ function getUsers(tBookId) {
 
 function toggleUsers() {
     console.log("ive been toggled");
-    // $('.main__books').toggleClass('.main__books--active')
-    // $('.sidebar__users').toggleClass('.sidebar__users--active')
+    $('.main__books').toggleClass('main__books--active')
+    $('.sidebar__users').toggleClass('sidebar__users--active')
 }
