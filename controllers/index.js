@@ -20,6 +20,11 @@ router.use( '/user', require( './users/user' ) );
 router.use( '/dashboard', require( './users/dashboard' ) );
 
 //=========================
+// MESSAGE ROUTES
+//=========================
+router.use( '/messages', require( './messages/messages' ) );
+
+//=========================
 // SEARCH ROUTES
 //=========================
 router.use( '/search', require( './search/search' ) );

@@ -1,0 +1,10 @@
+include ../layouts/layout.pug
+
+block content
+    h1 here yee messages
+
+    if messages
+        div.message-container
+            each message in messages
+                div.message-title TITLE: #{message.title}
+                div.message-text #{message.text}
