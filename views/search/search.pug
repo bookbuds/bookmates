@@ -2,6 +2,25 @@ include ../layouts/layout.pug
 
 block content
     h1 search for something, i dare ya.
-    form.search
-        input.query(type="text")
-        button(type="submit") Submit
+    form.search( action="/search" method="post" )
+        input.query( name="query" type="text" )
+        button( type="submit" ) Submit
+    
+    //- show book results
+    if bookCollection
+        div.results
+            each books in bookCollection
+                each book in books
+                    div #{ book.title }
+                    img( src=book.img )
+
+                    if user
+                        div.button-holder( data-book = book )
+                            button.book-button( data-status = 'read' ) Read
+                            button.book-button( data-status = "reading") Reading
+                            button.book-button( data-status = "wantToRead" ) Want To Read                    
+
+                    else
+                        div.button-holder
+                            a( href="/login" )
+                                button Login

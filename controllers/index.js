@@ -26,7 +26,10 @@ router.use( '/search', require( './search/search' ) );
 //=========================
 // API ROUTES
 //=========================
-router.use( '/api/v1/messages', require( './api/messages' ) );
+router.use( '/api/v1/messages', require( './api/v1/messages' ) );
+router.use( '/api/v1/books', require( './api/v1/books' ) );
+router.use( '/api/v1/users', require( './api/v1/users' ) );
+router.use( '/api/v1/userbooks', require( './api/v1/userbooks' ) );
 
 //=========================
 // EXPORTS
