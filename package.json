@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "build": "webpack -p"
+    "build": "webpack -p",
+    "db-up": "sequelize db:migrate && sequelize db:seed:all",
+    "db-down": "sequelize db:seed:undo:all && sequelize db:migrate:undo:all"
   },
   "dependencies": {
     "bcrypt": "1.0.2",

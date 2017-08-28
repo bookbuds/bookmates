@@ -1,69 +1,52 @@
 //=========================
 // USER MODEL
 //=========================
-function User( sequelize, DataTypes )
-{
+function User(sequelize, DataTypes) {
     //object with the data field assignments
-    const userData = 
-    {
-        first_name:
+    const userData =
         {
-            type: DataTypes.STRING,
-            validate:
+            user_name:
             {
-                len: [ 1, 140 ]
-            }
-        },
+                type: DataTypes.STRING,
+                allowNull: false,
+                validate:
+                {
+                    unique: true,
+                    len: [1, 140]
+                }
+            },
 
-        last_name:
-        {
-            type: DataTypes.STRING,
-            validate:
+            email:
             {
-                len: [ 1, 140 ]
-            }
-        },
+                type: DataTypes.STRING,
+                allowNull: false,
+                validate:
+                {
+                    unique: true,
+                    len: [3, 140]
+                }
 
-        user_name:
-        {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate:
+            },
+
+            password:
             {
-                len: [ 1, 140 ]
-            }
-        },
+                type: DataTypes.STRING,
+                allowNull: false,
+                validate:
+                {
+                    len: [8, 100]
+                }
+            },
+            gender: DataTypes.STRING,
+            location: DataTypes.STRING,
+            profile_img_url: DataTypes.STRING
+        }
 
-        email:
-        {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate:
-            {
-                len: [ 3, 140 ]
-            }
-
-        },
-
-        password:
-        {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate:
-            {
-                len: [ 8, 100 ]
-            }
-        },
-
-        profile_img_url: DataTypes.STRING
-    }
-
-    const tempUser = sequelize.define( "User", userData );
+    const tempUser = sequelize.define("User", userData);
 
     //SET UP LINK TABLE
-    tempUser.associate = function( tModels )
-    {
-        tempUser.belongsToMany( tModels.Book, { through: 'UserBook', unique: false } );
+    tempUser.associate = function (tModels) {
+        tempUser.belongsToMany(tModels.Book, { through: 'UserBook', unique: false });
     }
 
     return tempUser;

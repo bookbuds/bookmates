@@ -5,8 +5,11 @@ block headerscripts
 block content
   if user != undefined
     h1 Hello, #{user}
+    a(href='/dashboard') Dashboard
   else
-    h1 Sign Up!
+    a(href='/register') Sign Up!
+    a(href='/login') Login
+    a(href='/user/james') Visit James' Profile
 
 block footerscripts
     script(src="https://code.jquery.com/jquery-3.2.1.min.js"
