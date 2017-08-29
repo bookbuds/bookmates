@@ -1,9 +1,9 @@
 //=========================
 // BUTTON HANDLERS
 //=========================
-$(document).ready(function() {
-  $(document).on("click", ".main__books-wrapper", event, getUsers);
-  $(document).on("click", ".main__books-wrapper", event, toggleUsers);
+$(document).ready(function () {
+    $(document).on("click", ".main__books-wrapper", event, getUsers);
+    $(document).on("click", ".main__books-wrapper", event, toggleUsers);
 });
 
 //=========================
@@ -11,11 +11,18 @@ $(document).ready(function() {
 //=========================
 //send bookid to the API
 function getUsers(tBookId) {
-  console.log("ive been clicked");
+    console.log("ive been clicked");
+    let $this = this
+
+    let id = $($this).attr('data-id')
+    let title = $($this).attr('data-title')
+    let author = $($this).attr('data-author')
+    let imgurl = $($this).attr('data-imgurl')
+
+    $.get({ url: `/api/v1/users/${id}` }).then(results => { console.log(results); })
 }
 
 function toggleUsers() {
-    console.log("ive been toggled");
-    $('.main__books').toggleClass('main__books--active')
-    $('.sidebar__users').toggleClass('sidebar__users--active')
+    $('.main__books').addClass('main__books--active')
+    $('.sidebar__users').addClass('sidebar__users--active')
 }

@@ -21,7 +21,8 @@ block content
                             - var imgurl = item['Books.img_url']
                             - var title = item['Books.title']
                             - var author = item['Books.author']
-                                .main__books-wrapper
+                            - var bookid = item['Books.UserBook.BookId']
+                                .main__books-wrapper(book-id=bookid)
                                     img(src=imgurl alt="image")
                                     p.books__title= title
                                     p.books__author= author
@@ -31,7 +32,8 @@ block content
                             - var imgurl = item['Books.img_url']
                             - var title = item['Books.title']
                             - var author = item['Books.author']
-                                .main__books-wrapper
+                            - var bookid = item['Books.UserBook.BookId']
+                                .main__books-wrapper(book-id=bookid)
                                     img(src=imgurl alt="image")
                                     p.books__title= title
                                     p.books__author= author
@@ -41,7 +43,8 @@ block content
                             - var imgurl = item['Books.img_url']
                             - var title = item['Books.title']
                             - var author = item['Books.author']
-                                .main__books-wrapper
+                            - var bookid = item['Books.UserBook.BookId']
+                                .main__books-wrapper(book-id=bookid)
                                     img(src=imgurl alt="image")
                                     p.books__title= title
                                     p.books__author= author

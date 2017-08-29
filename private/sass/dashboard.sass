@@ -1,29 +1,80 @@
 #main
     display: flex
     align-items: stretch
-    border: 1px solid red
+    background-color: $color-white
+    +tablet
+        flex-direction: column
 
 .sidebar__profile
     text-align: center
-    width: 250px
+    min-width: 250px
     padding: 20px
-    background-color: #111111
-    color: #eee
-    border: 1px solid #ccc
+    background-color: $color-black
+    color: $color-white
+
+.sidebar__profile-avatar
+    img
+        border-radius: 50%
+        width: 175px
+        height: 175px
+        border: 4px solid $color-white
+
+.sidebar__profile-info *
+    margin: 5px
+
+.profile__message
+    cursor: pointer
+    height: 50px
+    padding: 0 15px
+    outline: none
+    border: none
+    border-radius: 2px
+    box-shadow: 2px 2px 10px 0px rgba(17,17,17,0.1)
+    background-color: $primary-color
+    font-size: 18px
+    font-weight: 300
+    font-family: $primary-font
 
 .main__books
-    margin: 0 50px
-    border: 1px solid red
+    position: relative
+    z-index: 1
+    padding: 0 50px
     width: 100%
+    box-shadow: 2px 2px 10px 0px rgba(17,17,17,0.1)
     transition: width 1s
-    &--active
-        width: 75%
+    
+.main__header
+    display: flex
+    align-items: center
+    justify-content: space-between
+
+.main__header-title
     h1
-        padding: 50px
+        margin-left: 25px
+        padding: 50px 0
         font-size: 36px
+        font-family: $primary-font
+        font-weight: 200
+
+.main__books-search-input
+    max-width: 200px
+    height: 50px
+    margin: 15px 100px
+    padding: 0 10px
+    outline: none
+    border: none
+    border-radius: 2px
+    box-shadow: 2px 2px 10px 0px rgba(17,17,17,0.1)
+    &::placeholder
+        color: #cbcbcb
 
 .main__bookshelf
     min-height: 100%
+
+.bookshelf__title
+    margin-left: 25px
+    font-size: 24px
+    font-weight: 100
 
 .bookshelf__reading,
 .bookshelf__want-to-read,
@@ -31,15 +82,17 @@
     display: flex
     flex-wrap: wrap
     align-items: flex-start
-    border: 1px solid #ccc
 
 .main__books-wrapper
     text-align: center
-    margin: 15px
-    img
-        margin: 5px
+    padding: 25px
+
+.books__image
+    cursor: pointer
+    box-shadow: 2px 2px 7px 0px rgba(17,17,17,0.1)
 
 .books__title
+    margin: 10px
     font-weight: bold
     font-size: 18px
 
@@ -47,9 +100,10 @@
     font-style: italic
 
 .sidebar__users
-    background-color: #ccc
+    background-color: #5c5c5a
+    z-index: 0
     height: 100%
-    width: 0%
-    transition: width 1s
+    min-width: 0px
+    transition: width 1s, min-width 1s
     &--active
-        width: 25%
+        min-width: 320px
