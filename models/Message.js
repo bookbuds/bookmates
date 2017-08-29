@@ -15,7 +15,7 @@ function Message( sequelize, DataTypes )
     tempMessage.associate = function( tModels )
     {
         tempMessage.belongsTo( tModels.User, { as: 'recipient'} );
-        tempMessage.belongsTo( tModels.User, { as: 'author'} );        
+        tempMessage.belongsTo( tModels.User, { as: 'author'} );
     }
 
     return tempMessage;

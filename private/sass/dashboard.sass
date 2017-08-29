@@ -81,9 +81,10 @@
 .bookshelf__read
     display: flex
     flex-wrap: wrap
-    align-items: flex-start
+    align-items: stretch
 
 .main__books-wrapper
+    max-width: 300px
     text-align: center
     padding: 25px
 
@@ -100,10 +101,18 @@
     font-style: italic
 
 .sidebar__users
+    display: flex
+    flex-direction: column
     background-color: #5c5c5a
     z-index: 0
-    height: 100%
+    height: auto
     min-width: 0px
+    width: 0px
     transition: width 1s, min-width 1s
     &--active
         min-width: 320px
+
+.sidebar__button-close
+    display: none
+    &--visible
+        display: block

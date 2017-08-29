@@ -3,7 +3,8 @@
 //=========================
 $(document).ready(function () {
     $(document).on("click", ".main__books-wrapper", event, getUsers);
-    $(document).on("click", ".main__books-wrapper", event, toggleUsers);
+    $(document).on("click", ".main__books-wrapper", event, openSidebar);
+    $('.sidebar__button-close').on("click", event, closeSidebar);
 });
 
 //=========================
@@ -22,7 +23,16 @@ function getUsers(tBookId) {
     $.get({ url: `/api/v1/users/${id}` }).then(results => { console.log(results); })
 }
 
-function toggleUsers() {
+function openSidebar() {
     $('.main__books').addClass('main__books--active')
     $('.sidebar__users').addClass('sidebar__users--active')
+    $('.sidebar__button-close').addClass('sidebar__button-close--visible')
+    
+}
+
+function closeSidebar() {
+    $('.main__books').removeClass('main__books--active')
+    $('.sidebar__users').removeClass('sidebar__users--active')
+    $('.sidebar__button-close').removeClass('sidebar__button-close--visible')
+    
 }
