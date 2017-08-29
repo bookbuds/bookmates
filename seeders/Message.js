@@ -46,6 +46,30 @@ module.exports = {
             recipientId: 1,
             authorId: 2
         },
+        {
+            is_read: false,
+            text: "Hey Matt!",
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            recipientId: 3,
+            authorId: 1
+        },
+        {
+            is_read: false,
+            text: "Hey Duncan!",
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            recipientId: 4,
+            authorId: 1
+        },
+        {
+            is_read: false,
+            text: "Hey Admin, I've been good I promise!",
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            recipientId: 1,
+            authorId: 4
+        },
     ])
   },
 
