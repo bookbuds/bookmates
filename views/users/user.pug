@@ -18,7 +18,8 @@ block content
                 .main__header-title
                     h1 Bookshelf 
                 .main__header-search
-                    input.main__books-search-input(type='text' placeholder='Search...')
+                    form.main__books-search(action='/search' type='POST')
+                        input.main__books-search-input(type='text' placeholder='Search...')
             .main__bookshelf
                 h1.bookshelf__title Reading
                 .bookshelf__reading

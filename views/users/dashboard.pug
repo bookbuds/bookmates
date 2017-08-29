@@ -39,7 +39,8 @@ block content
                             - var title = item['Books.title']
                             - var author = item['Books.author']
                             - var bookid = item['Books.UserBook.BookId']
-                                .main__books-wrapper(data-id=bookid, data-title=title, data-author=author, data-imgurl=imgurl)                                    img.books__image(src=imgurl alt="image")
+                                .main__books-wrapper(data-id=bookid, data-title=title, data-author=author, data-imgurl=imgurl)
+                                    img.books__image(src=imgurl alt="image")
                                     p.books__title= title
                                     p.books__author= author
                 h1.bookshelf__title Want to Read
