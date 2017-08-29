@@ -1,6 +1,7 @@
-import '../sass/style.scss';
+import '../sass/style.sass';
 import '../../node_modules/holderjs/holder.js';
 import './search.js';
+import './dashboard.js';
 
 console.log( 'im wide awake - its morning' );
 

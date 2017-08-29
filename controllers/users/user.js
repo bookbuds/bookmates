@@ -25,6 +25,7 @@ function onUser(tRequest, tResponse) {
                     tResponse.redirect('/')
                 } else {
                     console.log(results);
+                    
                     let profileImage = results[0].profile_img_url
                     tResponse.render('users/user', { results: results, username: username, profileImage: profileImage })
                 }
