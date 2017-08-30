@@ -38,7 +38,7 @@ function onGetUsersWithBookId(tRequest, tResponse) {
       db.User
         .findAll({
           where: { id: userids },
-          attributes: ['user_name', 'gender', 'location', 'profile_img_url'],
+          attributes: ['user_name', 'gender', 'location', 'profile_img_url', 'id'],
           raw: true
         })
         .then(returnResults)

@@ -21,30 +21,65 @@ function getUsers(tBookId) {
     let imgurl = $($this).attr('data-imgurl')
 
     $.get({ url: `/api/v1/users/${id}` })
-        .then(results => 
-            {
-                console.log(results);
+        .then(results => {
+            console.log(results);
 
-                let html = '';
-                let $userWrapper = $('.sidebar__user-wrapper')
+            let $userId = $('.profile__main-name').attr('data-id')
+
+            let $sidebarHeading = $('.sidebar__heading')
+            let $bookWrapper = $('.sidebar__book-wrapper')
+            let $userWrapper = $('.sidebar__user-wrapper')
+
+            if (results.length > 0) {
+
+                let bookhtml = '';
+                let userhtml = '';
+
+                userhtml +=
+                    `
+                    
+                    `
 
                 for (let index = 0; index < results.length; index++) {
                     let element = results[index];
-                    
-                    html +=
-                    `
-                    <div class="sidebar__profile-wrapper">
-                        <div class="sidebar__profile-avatar"><img src=${element.profile_image_url} alt="profile image"></div>
-                        <div class="sidebar__profile-info">
-                            <h3 class="profile__name">${element.user_name}</h3>
-                            <p class="profile__info">${element.gender}</p>
-                            <p class="profile__location">${element.location}</p><button class="profile__message">Message</button></div>
-                    </div>
-                    `
+
+                    if (element.id != $userId) {
+
+                        userhtml +=
+                            `
+                            <div class="sidebar__profile-wrapper">
+                                <div class="sidebar__profile-avatar">
+                                    <img src='http://via.placeholder.com/150x200' alt="profile image">
+                                </div>
+                                <div class="sidebar__profile-info">
+                                    <h3 class="sidebar__profile-name">${element.user_name}</h3>
+                                    <form action="/messages/${element.id}">
+                                        <button class="sidebar__profile-message">Message</button>
+                                    </form>
+                                </div>
+                            </div>
+                            `
+                    }
                 }
 
-                $userWrapper.html(html);
+                $userWrapper.html(userhtml);
+                $sidebarHeading.children().remove();
+
+            } else {
+
+                let $sidebarHeading = $('.sidebar__heading')
+
+                let html =
+                    `
+                        <h1>No users are currently reading this book</h1>
+                    `
+
+                $bookWrapper.children().remove();
+                $userWrapper.children().remove();
+                $sidebarHeading.html(html);
             }
+
+        }
         )
 }
 
@@ -52,12 +87,16 @@ function openSidebar() {
     $('.main__books').addClass('main__books--active')
     $('.sidebar__users').addClass('sidebar__users--active')
     $('.sidebar__button-close').addClass('sidebar__button-close--visible')
-    
+
 }
 
 function closeSidebar() {
     $('.main__books').removeClass('main__books--active')
     $('.sidebar__users').removeClass('sidebar__users--active')
     $('.sidebar__button-close').removeClass('sidebar__button-close--visible')
-    
+
+    $('.sidebar__heading').children().remove()
+    $('.sidebar__book-wrapper').children().remove()
+    $('.sidebar__user-wrapper').children().remove()
+
 }

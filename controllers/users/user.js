@@ -2,6 +2,7 @@ const db = require('../../models')
 const isAuth = require('../../middleware/auth');
 const express = require('express');
 const router = express.Router();
+const parseUsersBooks = require('../../helpers/parseUsersBooks');
 
 //=========================
 // GET DEFAULT
@@ -10,6 +11,7 @@ router.get('/:username', onUser);
 
 function onUser(tRequest, tResponse) {
     let username = tRequest.params.username
+    let auth = tRequest.isAuthenticated()
 
     if (tRequest.isAuthenticated() && tRequest.user.user_name == username) {
         tResponse.redirect('dashboard')
@@ -24,14 +26,16 @@ function onUser(tRequest, tResponse) {
                 if (results.length == 0) {
                     tResponse.redirect('/')
                 } else {
-                    console.log(results);
-                    
-                    let profileImage = results[0].profile_img_url
-                    tResponse.render('users/user', { results: results, username: username, profileImage: profileImage, title: 'Bookshelf' })
+                    console.log(parseUsersBooks(results));
+                    let userInfo = parseUsersBooks(results);
+
+                    tResponse.render('users/user', { userInfo: userInfo, username: username, auth: auth, title: 'Bookshelf' })
                 }
             }
             ).catch(err => console.log(err));
     }
 }
+
+
 
 module.exports = router
