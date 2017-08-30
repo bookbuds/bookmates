@@ -1,10 +1,7 @@
 include ../layouts/layout.pug
 
 block content
-    h1 search for something, i dare ya.
-    form.search( action="/search" method="post" )
-        input.query( name="query" type="text" )
-        button( type="submit" ) Submit
+    include ../layouts/includes/nav
     
     //- show book results
     if bookCollection

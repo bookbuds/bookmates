@@ -15,9 +15,10 @@ $( document ).ready( function()
         addBookToUser( tempBook, tempStatus );
     });
 
-    ('.main__books-search-input').on('keydown', function(e){
+    $('.main__books-search-input').on('keydown', function(e){
         if (e.keyCode == 13) {
-
+            const query = e.target.value
+            window.location.href = `${window.location.origin}/search/${query}`
         }
     })
 });

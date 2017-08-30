@@ -27,7 +27,7 @@ function onUser(tRequest, tResponse) {
                     console.log(results);
                     
                     let profileImage = results[0].profile_img_url
-                    tResponse.render('users/user', { results: results, username: username, profileImage: profileImage })
+                    tResponse.render('users/user', { results: results, username: username, profileImage: profileImage, title: 'Bookshelf' })
                 }
             }
             ).catch(err => console.log(err));

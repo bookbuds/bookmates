@@ -3,14 +3,16 @@ extends layouts/layout
 block headerscripts
 
 block content
-  if user != undefined
-    h1 Hello, #{user}
-    a(href='/dashboard') Dashboard
-    a(href='/search') Search
-  else
-    a(href='/register') Sign Up!
-    a(href='/login') Login
-    a(href='/search') Search
-    a(href='/user/james') Visit James' Profile
+    include layouts/includes/nav
+    
+    if user != undefined
+        h1 Hello, #{user}
+        a(href='/dashboard') Dashboard
+        a(href='/search') Search
+    else
+        a(href='/register') Sign Up!
+        a(href='/login') Login
+        a(href='/search') Search
+        a(href='/user/james') Visit James' Profile
 
 block footerscripts

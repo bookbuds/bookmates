@@ -14,12 +14,7 @@ block content
                     p.profile__location Atlanta, GA
                     button.profile__message Message
         .main__books
-            .main__header
-                .main__header-title
-                    h1 Bookshelf 
-                .main__header-search
-                    form.main__books-search(action='/search' type='POST')
-                        input.main__books-search-input(type='text' placeholder='Search...')
+            include ../layouts/includes/nav
             .main__bookshelf
                 h1.bookshelf__title Reading
                 .bookshelf__reading

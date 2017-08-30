@@ -30,7 +30,8 @@ function onDashboard(tRequest, tResponse) {
         tResponse.render("users/dashboard", {
           results: results,
           username: username,
-          profileImage: profileImage
+          profileImage: profileImage,
+          title: 'Bookshelf'
         });
       })
       .catch(err => console.log(err));
