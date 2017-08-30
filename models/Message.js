@@ -16,7 +16,7 @@ function Message( sequelize, DataTypes )
     {
         tempMessage.belongsTo( tModels.User, { as: 'recipient' } );
         tempMessage.belongsTo( tModels.User, { as: 'author' } );
-        tempMessage.hasOne( tModels.Conversation, { as: 'message' } );
+        // tempMessage.hasOne( tModels.Conversation, { as: 'message' } );
     }
 
     return tempMessage;

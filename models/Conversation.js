@@ -23,6 +23,7 @@ function Conversation( sequelize, DataTypes )
     {
         tempConversation.belongsTo( tModels.User, { as: "user1" } );
         tempConversation.belongsTo( tModels.User, { as: "user2" } );
+        tempConversation.hasOne( tModels.Message );
     }
 
     return tempConversation;
