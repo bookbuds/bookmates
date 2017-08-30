@@ -24,7 +24,7 @@ function onGetMessages( tRequest, tResponse )
     const tempConversationId = tRequest.params.conversationId;
     const bookMateId = parseInt( tRequest.params.userId );
 
-    console.log( bookMateId );
+    //console.log( bookMateId );
 
     //if there is a user that's been auth'd with a verified id
     //find the rquested convo by id and make sure its a valid one
@@ -91,10 +91,6 @@ router.get( '/:userId', onGetConversation );
 
 function onGetConversation( tRequest, tResponse )
 {
-    console.log( `bookMate id = ${ tRequest.params }`);
-    console.log( JSON.stringify( tRequest.params, null, 2 ) );
-    
-
     //current user making the request
     if( !tRequest.user )
     {
@@ -105,20 +101,31 @@ function onGetConversation( tRequest, tResponse )
 
     const currentUserId = tRequest.user.id;
     //other user (that is being conversed with)
-    console.log( `bookMate id = ${tRequest.params.userId}`);
     const bookMateId = parseInt( tRequest.params.userId );
 
-    console.log( currentUserId, bookMateId );
+    //check if the other user is a real user
+    db.User.findOne( {where: {id: bookMateId} } ).then( findConversation );
 
     //probably should double check if it exists the opposite way?
     //create Convo or get it if it exists
-    db.Conversation.findOne
-    ( 
-        { 
-            where: { user1Id: currentUserId, user2Id: bookMateId },
-            raw: true
+    function findConversation( tUser )
+    {
+        if( !tUser )
+        {
+            console.log( 'no user exists with that id' );
+            //go home for now( redirect to messages when there is a master page )
+            tResponse.redirect( '/' );
+            return;
         }
-    ).then( onConversationCreated );
+
+        db.Conversation.findOne
+        ( 
+            { 
+                where: { user1Id: currentUserId, user2Id: bookMateId },
+                raw: true
+            }
+        ).then( onConversationCreated );
+    }
 
     function onConversationCreated( tResults )
     {
