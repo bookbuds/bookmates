@@ -33,7 +33,7 @@ function addBookToUser( tBook, tStatus )
     tBook.status = tStatus;
 
     //define post options
-    const tempPostOptions = { url: 'api/v1/books/addToUser', data: tBook, method: 'POST' };
+    const tempPostOptions = { url: '/api/v1/books/addToUser', data: tBook, method: 'POST' };
     
     //post to API
     $.post( tempPostOptions ).then( ( tempResults ) => 
