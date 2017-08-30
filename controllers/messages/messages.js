@@ -7,6 +7,7 @@ const db = require( '../../models' )
 //=========================
 router.get( '/:conversationId', onGetMessages );
 
+//GET CONVERSATIONS BETWEEN TWO USERS THAT ALREADY EXISTS
 function onGetMessages( tRequest, tResponse )
 {
     const tempConversationId = tRequest.params.conversationId;

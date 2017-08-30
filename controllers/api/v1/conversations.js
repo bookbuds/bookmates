@@ -27,7 +27,7 @@ function onGetConversations( tRequest, tResponse )
                 $or: { user1Id: userId, user2Id: userId }
             }
         }
-    ).then( results => { tResponse.json( results ) } )
+    ).then( results => { tResponse.json( results ) } );
 }
 
 //=========================
