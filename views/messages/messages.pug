@@ -5,6 +5,8 @@ block content
     br
 
     if messages
+        //- cache the convo id
+        //- - const convoId = messages[0].ConversationId; 
         div.message-container
             each message in messages
                 div.message-sender #{ message.author.user_name }:
@@ -12,11 +14,8 @@ block content
                 br
 
 
-            form( action = "/api/v1/messages" method = "post" )
-            input( name ="messageText" type = textfield )
-            //- input( name = "messageRecipient" value = message.author.id type = "hidden" )
-            //- input( name = "conversationId" value = message.ConversationId type = "hidden" )
-            
-            //- data recipient is for using jquery to send post
-            button.message-button reply
-            br
+            form( action = "/api/v1/messages" method = "POST" )
+                input( name ="messageText" type = textfield )
+                input( name = "recipientId" value = bookMateId type = "hidden" )
+                input( name = "conversationId" value = conversationId type = "hidden" )
+                input( type = "submit" )
