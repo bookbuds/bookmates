@@ -4,50 +4,64 @@ block headerscripts
 
 block content
     #main
-        .sidebar__user
-            .sidebar__user-wrapper
-                .sidebar__user-avatar
+        .sidebar__profile
+            .sidebar__profile-wrapper
+                .sidebar__profile-avatar
                     img(src=profileImage alt="profile image")
-                .sidebar__user-info
-                    h3.user__name= username
-                    p.user__info Female
-                    p.user__location Atlanta, GA
-                    button.user__message Message
+                .sidebar__profile-info
+                    h3.profile__name= username
+                    p.profile__info Female
+                    p.profile__location Atlanta, GA
+                    button.profile__message Message
         .main__books
-            h1 Bookshelf 
+            .main__header
+                .main__header-title
+                    h1 Bookshelf 
+                .main__header-search
+                    form.main__books-search(action='/search' type='POST')
+                        input.main__books-search-input(type='text' placeholder='Search...')
             .main__bookshelf
+                h1.bookshelf__title Reading
                 .bookshelf__reading
                     for item in results
                         if item['Books.UserBook.status'] == 'reading'
                             - var imgurl = item['Books.img_url']
                             - var title = item['Books.title']
                             - var author = item['Books.author']
-                                .main__books-wrapper
-                                    img(src=imgurl alt="image")
+                            - var bookid = item['Books.UserBook.BookId']
+                                .main__books-wrapper(data-id=bookid, data-title=title, data-author=author, data-imgurl=imgurl)
+                                    img.books__image(src=imgurl alt="image")
                                     p.books__title= title
-                                    p.books__author= author
+                                    p.books__author by #{author}
+                h1.bookshelf__title Read    
                 .bookshelf__read
                     for item in results
                         if item['Books.UserBook.status'] == 'read'
                             - var imgurl = item['Books.img_url']
                             - var title = item['Books.title']
                             - var author = item['Books.author']
-                                .main__books-wrapper
-                                    img(src=imgurl alt="image")
+                            - var bookid = item['Books.UserBook.BookId']
+                                .main__books-wrapper(data-id=bookid, data-title=title, data-author=author, data-imgurl=imgurl)
+                                    img.books__image(src=imgurl alt="image")
                                     p.books__title= title
                                     p.books__author= author
+                h1.bookshelf__title Want to Read
                 .bookshelf__want-to-read
                     for item in results
                         if item['Books.UserBook.status'] == 'wantToRead'
                             - var imgurl = item['Books.img_url']
                             - var title = item['Books.title']
                             - var author = item['Books.author']
-                                .main__books-wrapper
-                                    img(src=imgurl alt="image")
+                            - var bookid = item['Books.UserBook.BookId']
+                                .main__books-wrapper(data-id=bookid, data-title=title, data-author=author, data-imgurl=imgurl)
+                                    img.books__image(src=imgurl alt="image")
                                     p.books__title= title
                                     p.books__author= author
-                    
+        .sidebar__users
+            button.sidebar__button-close X
+            .sidebar__book-wrapper
 
+            .sidebar__user-wrapper
 
 
 block footerscripts

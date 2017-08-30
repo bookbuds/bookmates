@@ -47,6 +47,9 @@ function User(sequelize, DataTypes) {
     //SET UP LINK TABLE
     tempUser.associate = function (tModels) {
         tempUser.belongsToMany(tModels.Book, { through: 'UserBook', unique: false });
+
+        //CONVERSATIONS
+        //tempUser.hasMany( tModels.Conversation, { through: 'Conversations' } );
     }
 
     return tempUser;

@@ -4,15 +4,15 @@ html(lang='en')
         title= title
         meta(charset='UTF-8')
         meta(name='viewport', content='width=device-width, initial-scale=1')
-        link(href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet" type="text/css")
+        link(href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,200,300400,700" rel="stylesheet" type="text/css")
         link(href="https://fonts.googleapis.com/css?family=Roboto:100,400,300,500,700" rel="stylesheet" type="text/css")
         link(rel='stylesheet', href='/build/stylesheets/style.css')
         block headerscripts
     body
         block content
         block footerscripts
-            script(src="https://code.jquery.com/jquery-3.2.1.min.js"
-                integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-                crossorigin="anonymous")
+        script(src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous")
         //- bundle for all frontend js and styling
         script(src='/build/bundle.js')

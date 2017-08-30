@@ -14,6 +14,12 @@ $( document ).ready( function()
         let tempBook = JSON.parse( tEvent.target.parentElement.dataset.book );
         addBookToUser( tempBook, tempStatus );
     });
+
+    ('.main__books-search-input').on('keydown', function(e){
+        if (e.keyCode == 13) {
+
+        }
+    })
 });
 
 //=========================

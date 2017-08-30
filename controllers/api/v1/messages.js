@@ -1,15 +1,29 @@
-const express = require( 'express' );
+const express = require('express');
 const router = express.Router();
-const db = require( '../../../models' );
+const db = require('../../../models');
 
 //=========================
 // GET MESSAGES
 //=========================
 router.get( '/', onGetMessages );
 
-function onGetMessages( tRequest, tResponse )
+function onGetMessages( tRequest, tResponse ) 
 {
-    tResponse.json( { messageId: 1, messageText: "hey" } );
+    tResponse.json({ messageId: 1, messageText: "hey" });
+}
+
+router.get( '/:userid', onGetUserMessages );
+
+function onGetUserMessages(tRequest, tResponse) {
+    let userId = tRequest.params.userid
+    db.Message.findAll(
+        {
+            where:
+            {
+                $or: { authorId: userId, recipientId: userId }
+            }
+        }
+    ).then(results => { tResponse.json(results) })
 }
 
 //=========================
@@ -17,20 +31,20 @@ function onGetMessages( tRequest, tResponse )
 //=========================
 router.post( '/', onPostMessage );
 
-function onPostMessage( tRequest, tResponse )
-{
-   //if message has no text, redirect back to messages?
-    if( !tRequest.body.messageText )
+function onPostMessage( tRequest, tResponse ) {
+    //if message has no text, redirect back to messages?
+    if ( !tRequest.body.messageText )
     {
         tResponse.redirect( "/messages" );
         return;
     }
 
-    let tempMessage = 
+    let tempMessage =
     {
         text: tRequest.body.messageText,
         authorId: tRequest.user.id,
         recipientId: tRequest.body.messageRecipient,
+        ConversationId: tRequest.body.conversationId,
         is_read: false
     }
 

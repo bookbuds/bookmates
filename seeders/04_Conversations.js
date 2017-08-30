@@ -13,34 +13,13 @@ module.exports = {
       }], {});
     */
 
-    return queryInterface.bulkInsert('UserBooks', [
+    return queryInterface.bulkInsert('Conversations', [
         {
-            status: 'read',
+            id: 1,
+            user1Id: 1,
+            user2Id: 2,
             createdAt: new Date(),
             updatedAt: new Date(),
-            BookId: 1,
-            UserId: 1
-        },
-        {
-            status: 'read',
-            createdAt: new Date(),
-            updatedAt: new Date(),
-            BookId: 2,
-            UserId: 1
-        },
-        {
-            status: 'wantToRead',
-            createdAt: new Date(),
-            updatedAt: new Date(),
-            BookId: 3,
-            UserId: 1
-        },
-        {
-            status: 'reading',
-            createdAt: new Date(),
-            updatedAt: new Date(),
-            BookId: 4,
-            UserId: 1
         },
     ])
   },
