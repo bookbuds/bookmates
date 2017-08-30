@@ -16,8 +16,8 @@ module.exports = {
     return queryInterface.bulkInsert('Conversations', [
         {
             id: 1,
-            userId1: 1,
-            userId2: 2,
+            user1Id: 1,
+            user2Id: 2,
             createdAt: new Date(),
             updatedAt: new Date(),
         },

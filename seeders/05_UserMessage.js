@@ -20,7 +20,8 @@ module.exports = {
             createdAt: new Date(),
             updatedAt: new Date(),
             recipientId: 2,
-            authorId: 1
+            authorId: 1,
+            conversationId: 1
         },
         {
             is_read: false,
@@ -28,7 +29,8 @@ module.exports = {
             createdAt: new Date(),
             updatedAt: new Date(),
             recipientId: 1,
-            authorId: 2
+            authorId: 2,
+            conversationId: 1
         },
         {
             is_read: false,
@@ -36,39 +38,8 @@ module.exports = {
             createdAt: new Date(),
             updatedAt: new Date(),
             recipientId: 2,
-            authorId: 1
-        },
-        {
-            is_read: false,
-            text: "Great, let's talk about it!",
-            createdAt: new Date(),
-            updatedAt: new Date(),
-            recipientId: 1,
-            authorId: 2
-        },
-        {
-            is_read: false,
-            text: "Hey Matt!",
-            createdAt: new Date(),
-            updatedAt: new Date(),
-            recipientId: 3,
-            authorId: 1
-        },
-        {
-            is_read: false,
-            text: "Hey Duncan!",
-            createdAt: new Date(),
-            updatedAt: new Date(),
-            recipientId: 4,
-            authorId: 1
-        },
-        {
-            is_read: false,
-            text: "Hey Admin, I've been good I promise!",
-            createdAt: new Date(),
-            updatedAt: new Date(),
-            recipientId: 1,
-            authorId: 4
+            authorId: 1,
+            conversationId: 1
         },
     ])
   },
