@@ -7,11 +7,12 @@ const db = require('../../../models');
 //=========================
 router.get( '/', onGetMessages );
 
-function onGetMessages(tRequest, tResponse) {
+function onGetMessages( tRequest, tResponse ) 
+{
     tResponse.json({ messageId: 1, messageText: "hey" });
 }
 
-router.get('/:userid', onGetUserMessages);
+router.get( '/:userid', onGetUserMessages );
 
 function onGetUserMessages(tRequest, tResponse) {
     let userId = tRequest.params.userid
@@ -28,13 +29,13 @@ function onGetUserMessages(tRequest, tResponse) {
 //=========================
 // POST
 //=========================
-router.post('/', onPostMessage);
+router.post( '/', onPostMessage );
 
-function onPostMessage(tRequest, tResponse) {
+function onPostMessage( tRequest, tResponse ) {
     //if message has no text, redirect back to messages?
     if ( !tRequest.body.messageText )
     {
-        tResponse.redirect("/messages");
+        tResponse.redirect( "/messages" );
         return;
     }
 
