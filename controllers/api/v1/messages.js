@@ -39,17 +39,21 @@ function onPostMessage( tRequest, tResponse ) {
         return;
     }
 
+    console.log( tRequest.body );
+
     let tempMessage =
     {
         text: tRequest.body.messageText,
         authorId: tRequest.user.id,
-        recipientId: tRequest.body.messageRecipient,
-        ConversationId: tRequest.body.conversationId,
+        recipientId: parseInt( tRequest.body.recipientId ),
+        ConversationId: parseInt( tRequest.body.conversationId ),
         is_read: false
     }
 
+    console.log(`messageRecip sent to the server was ${ tRequest.body.recipientId }`);
+
     db.Message.create( tempMessage );
-    tResponse.redirect( "/messages" );
+    tResponse.redirect( "/messages/" + tRequest.body.recipientId );
 }
 
 //=========================
