@@ -30,8 +30,14 @@ function onGetMessages( tRequest, tResponse )
         tResponse.redirect( "/login" );
     }
 
+    //MIGHT HAVE TO GET THE COVO HERE
     function renderMessages( tMessages )
     {
+        for( let i = tMessages.length - 1; i >= 0; --i )
+        {
+            // if( tMessages[i].author )
+        }
+
         //console.log( JSON.stringify( tMessages, null, 2 ) );
         tResponse.render( 'messages/messages', { messages: tMessages, user: tRequest.user } );
     }

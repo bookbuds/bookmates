@@ -44,6 +44,7 @@ function onPostMessage( tRequest, tResponse ) {
         text: tRequest.body.messageText,
         authorId: tRequest.user.id,
         recipientId: tRequest.body.messageRecipient,
+        ConversationId: tRequest.body.conversationId,
         is_read: false
     }
 

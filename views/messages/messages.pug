@@ -9,12 +9,14 @@ block content
             each message in messages
                 div.message-sender #{ message.author.user_name }:
                 div.message-text #{ message.text }
-
-                unless( message.author.user_name === user.user_name )
-                    form( action = "/api/v1/messages" method = "post" )
-                        input( name ="messageText" type = textfield )
-                        input( name = "messageRecipient" value = message.author.id type = "hidden" )
-                        //- data recipient is for using jquery to send post
-                        button.message-button( data-recipient = message.author.id ) reply
-                    br
                 br
+
+
+            form( action = "/api/v1/messages" method = "post" )
+            input( name ="messageText" type = textfield )
+            //- input( name = "messageRecipient" value = message.author.id type = "hidden" )
+            //- input( name = "conversationId" value = message.ConversationId type = "hidden" )
+            
+            //- data recipient is for using jquery to send post
+            button.message-button reply
+            br
