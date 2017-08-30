@@ -148,7 +148,7 @@ function onGetConversation( tRequest, tResponse )
         }
 
         db.Message.findAll( 
-            { 
+            {
                 where: { ConversationId: tempConversationId },
                 include:
                 [ 
