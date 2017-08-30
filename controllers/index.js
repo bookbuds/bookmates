@@ -8,7 +8,7 @@ router.get('/', function( tRequest, tResponse )
 {
     let user = tRequest.user ? tRequest.user.user_name : undefined
 
-    tResponse.render( 'index', { user: user } );
+    tResponse.render( 'index', { user: user, title: 'BookMates' } );
 });
 
 //=========================
@@ -18,6 +18,7 @@ router.use( '/register', require( './users/register' ) );
 router.use( '/login', require( './users/login' ) );
 router.use( '/user', require( './users/user' ) );
 router.use( '/dashboard', require( './users/dashboard' ) );
+router.use( '/logout', require( './users/logout' ) );
 
 //=========================
 // MESSAGE ROUTES

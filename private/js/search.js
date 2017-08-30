@@ -15,9 +15,10 @@ $( document ).ready( function()
         addBookToUser( tempBook, tempStatus );
     });
 
-    ('.main__books-search-input').on('keydown', function(e){
+    $('.nav__books-search-input').on('keydown', function(e){
         if (e.keyCode == 13) {
-
+            const query = e.target.value
+            window.location.href = `${window.location.origin}/search/${query}`
         }
     })
 });
@@ -32,7 +33,7 @@ function addBookToUser( tBook, tStatus )
     tBook.status = tStatus;
 
     //define post options
-    const tempPostOptions = { url: 'api/v1/books/addToUser', data: tBook, method: 'POST' };
+    const tempPostOptions = { url: '/api/v1/books/addToUser', data: tBook, method: 'POST' };
     
     //post to API
     $.post( tempPostOptions ).then( ( tempResults ) => 

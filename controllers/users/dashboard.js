@@ -2,6 +2,7 @@ const db = require("../../models");
 const isAuth = require("../../middleware/auth");
 const express = require("express");
 const router = express.Router();
+const parseUsersBooks = require('../../helpers/parseUsersBooks');
 
 //=========================
 // GET DEFAULT
@@ -15,7 +16,7 @@ function onDashboard(tRequest, tResponse) {
     db.User
       .findAll({
         where: { id: tRequest.user.id },
-        attributes: [],
+        attributes: ['profile_img_url'],
         include: [
           {
             model: db.Book,
@@ -26,11 +27,13 @@ function onDashboard(tRequest, tResponse) {
         raw: true
       })
       .then(results => {
-        console.log(results);
+        console.log(parseUsersBooks(results));
+        let userInfo = parseUsersBooks(results);
+
         tResponse.render("users/dashboard", {
-          results: results,
+          userInfo: userInfo,
           username: username,
-          profileImage: profileImage
+          title: 'Bookshelf'
         });
       })
       .catch(err => console.log(err));
