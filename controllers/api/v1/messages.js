@@ -5,7 +5,7 @@ const db = require('../../../models');
 //=========================
 // GET MESSAGES
 //=========================
-router.get('/', onGetMessages);
+router.get('/', onGetMessages );
 
 function onGetMessages(tRequest, tResponse) {
     tResponse.json({ messageId: 1, messageText: "hey" });
