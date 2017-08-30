@@ -3,6 +3,7 @@ extends ../layouts/layout
 block headerscripts
 
 block content
+    include ../layouts/includes/nav
     #main
         .profile__main
             .profile__main-wrapper
@@ -13,7 +14,6 @@ block content
                     p.profile__main-info Female
                     p.profile__main-location Atlanta, GA
         .main__books
-            include ../layouts/includes/nav
             .main__bookshelf
                 if userInfo.bookCollection.reading.length > 0
                     h1.bookshelf__title Reading

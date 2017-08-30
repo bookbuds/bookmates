@@ -25,7 +25,7 @@ app.set( 'view engine', 'pug' );
 //=========================
 // STATIC FILES
 //=========================
-//app.use( express.static( path.join( __dirname, 'public' ) ) );
+app.use( express.static( path.join( __dirname, 'public' ) ) );
 
 if ( process.env.NODE_ENV !== 'production' ) {
     const config = require('./webpack.config.js' );

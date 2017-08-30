@@ -3,6 +3,7 @@ extends ../layouts/layout
 block headerscripts
 
 block content
+    include ../layouts/includes/nav
     #main
         .profile__main
             .profile__main-wrapper
@@ -16,7 +17,6 @@ block content
                         form(action='/messages/'+userInfo.UserId)
                             button.profile__main-message Message
         .main__books
-            include ../layouts/includes/nav
             .main__bookshelf
                 if userInfo.bookCollection.reading.length > 0
                     h1.bookshelf__title Reading
