@@ -11,6 +11,7 @@ router.get('/:query', onSearch);
 function onSearch(tRequest, tResponse) {
     const query = tRequest.params.query
     const user = tRequest.user;
+    const auth = tRequest.isAuthenticated()
 
     console.log(query);
     if (!query) {
@@ -48,7 +49,8 @@ function onSearch(tRequest, tResponse) {
                 searchResults.push(tempObj);
             }
 
-            tResponse.render('search/search', { bookCollection: { searchResults }, user: user, title: 'Search' });
+            console.log(searchResults)
+            tResponse.render('search/search', { bookCollection: { searchResults }, user: user, auth: auth, title: 'Search results' });
         });
     });
 }
