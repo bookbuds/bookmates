@@ -5,10 +5,13 @@ const db = require( '../../models' )
 //=========================
 // GET
 //=========================
-router.get( '/', onGetMessages );
+router.get( '/:userId', onGetMessages );
 
 function onGetMessages( tRequest, tResponse )
 {
+    const tempOtherUser = tRequest.params.userId;
+
+    //if there is a user that's been auth'd
     if( tRequest.user )
     {
         const tempId = tRequest.user.id;
