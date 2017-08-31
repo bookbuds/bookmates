@@ -26,7 +26,12 @@ function onGetAllConversations( tRequest, tResponse )
             where:
             {
                 $or: { user1Id: tempUserId, user2Id: tempUserId }
-            }
+            },
+            include:
+            [
+                { model: db.User, as: 'user1', required: true, attributes: [ 'id', 'user_name', 'profile_img_url' ] },
+                { model: db.User, as: 'user2', required: true, attributes: [ 'id', 'user_name', 'profile_img_url' ] }
+            ]
         }
     ).then( renderConversations );
 
@@ -39,7 +44,8 @@ function onGetAllConversations( tRequest, tResponse )
         }
         else
         {
-            tResponse.render( 'messages/conversations', { title: 'Conversations', conversations: tConversations } );
+            console.log( tConversations );
+            tResponse.render( 'messages/conversations', { title: 'Conversations', conversations: tConversations, currentUserId: tempUserId } );
         }
     }
 }
