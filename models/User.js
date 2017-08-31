@@ -37,9 +37,21 @@ function User(sequelize, DataTypes) {
                     len: [8, 100]
                 }
             },
-            gender: DataTypes.STRING,
-            location: DataTypes.STRING,
-            profile_img_url: DataTypes.STRING
+            gender:
+            {
+                type: DataTypes.STRING,
+                defaultValue: 'female',
+            },
+            location:
+            {
+                type: DataTypes.STRING,
+                defaultValue: 'antarctica'
+            },
+            profile_img_url:
+            {
+                type: DataTypes.STRING,
+                defaultValue: 'http://via.placeholder.com/150x200'
+            }
         }
 
     const tempUser = sequelize.define("User", userData);
