@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www",
+    "start": "NODE_ENV=production nodemon ./bin/www",
     "build": "NODE_ENV=production webpack --config webpack.config.prod.js",
     "db-up": "sequelize db:migrate && sequelize db:seed:all",
     "db-down": "sequelize db:seed:undo:all && sequelize db:migrate:undo:all"
