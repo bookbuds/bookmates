@@ -54,7 +54,7 @@ function onGetAllConversations( tRequest, tResponse )
 
 //GET DIRECT CONVERSATION
 //(this used to be /:userId/:conversationId - but userId was never used and made url wierder)
-router.get( '/conversation/:conversationId', onGetConversation );
+router.get( '/:userId/:conversationId', onGetConversation );
 
 //GET CONVERSATIONS BETWEEN TWO USERS THAT ALREADY EXISTS
 function onGetConversation( tRequest, tResponse )
@@ -128,7 +128,7 @@ function onGetConversation( tRequest, tResponse )
     function renderMessages( tMessages )
     {
         //console.log( JSON.stringify( tMessages, null, 2 ) );
-        tResponse.render( 'messages/messages', { title: "Message", messages: tMessages, user: tRequest.user, bookMateId: bookMateId } );
+        tResponse.render( 'messages/messages', { title: "Message", messages: tMessages, user: tRequest.user, conversationId: tempConversationId, bookMateId: bookMateId } );
     }
 
     //for sending a JSON response (testing)
