@@ -2,21 +2,24 @@ include ../layouts/layout.pug
 
 block content
     include ../layouts/includes/nav
-    h1 here yee messages:
+    //- h1.messages__title Conversation with
     br
 
     if messages
-        //- cache the convo id
-        //- - const convoId = messages[0].ConversationId; 
-        div.message-container
-            each message in messages
-                div.message-sender #{ message.author.user_name }:
-                div.message-text #{ message.text }
-                br
-
+        div.message__container
+            div.message__display
+                each message in messages
+                    if message.author.id == user.id
+                        div.message__item--self
+                            span.message__label--self #{ message.author.user_name }:
+                            div.message__text--self #{ message.text }
+                    else
+                        div.message__item--other
+                            span.message__label--other #{ message.author.user_name }:
+                            div.message__text--other #{ message.text }
 
             form( action = "/api/v1/messages" method = "POST" )
-                input( name ="messageText" type = textfield )
+                textarea.message__text-input( name ="messageText" )
                 input( name = "recipientId" value = bookMateId type = "hidden" )
                 input( name = "conversationId" value = conversationId type = "hidden" )
-                input( type = "submit" )
+                input.message__submit-button( type = "submit" )

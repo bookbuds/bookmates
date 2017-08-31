@@ -115,6 +115,10 @@ function onGetConversation( tRequest, tResponse )
                     { model: db.User, as: 'author', required: true, attributes: [ 'id', 'user_name' ] },
                     { model: db.User, as: 'recipient', required: true, attributes: [ 'id', 'user_name' ] }                    
                 ],
+                order:
+                [
+                    [ 'createdAt' ]
+                ]
             } 
         ).then( renderMessages );
     }
@@ -210,6 +214,11 @@ function onGetUserConversation( tRequest, tResponse )
                     { model: db.User, as: 'author', required: true, attributes: [ 'id', 'user_name' ] },
                     { model: db.User, as: 'recipient', required: true, attributes: [ 'id', 'user_name' ] }                    
                 ],
+
+                order:
+                [
+                    [ 'createdAt' ]
+                ]
             } 
         ).then( renderMessages );
 
