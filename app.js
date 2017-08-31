@@ -9,8 +9,7 @@ const logger = require( 'morgan' );
 const cookieParser = require( 'cookie-parser' );
 const bodyParser = require( 'body-parser' );
 const errorHandler = require( './middleware/error-handler' );
-const webpackDevMiddleware = require( 'webpack-dev-middleware' );
-const webpackHotMiddleware = require( 'webpack-hot-middleware' );
+
 
 //SERVER
 const app = express();
@@ -28,6 +27,8 @@ app.use( express.static( path.join( __dirname, 'public' ) ) );
 
 if ( process.env.NODE_ENV == 'development' ) {
     const webpack = require( 'webpack' );
+    const webpackDevMiddleware = require( 'webpack-dev-middleware' );
+    const webpackHotMiddleware = require( 'webpack-hot-middleware' );
     const config = require('./webpack.config.dev.js' );
     const compiler = webpack( config );
     app.use( webpackDevMiddleware( compiler, {
