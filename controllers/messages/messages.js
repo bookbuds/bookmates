@@ -5,10 +5,52 @@ const db = require( '../../models' )
 //=========================
 // GET
 //=========================
-router.get( '/:userId/:conversationId', onGetMessages );
+//GET ALL YOUR CONVERSATIONS
+router.get( '/', onGetAllConversations )
+
+function onGetAllConversations( tRequest, tResponse )
+{   
+    //if  user hasn't been auth'd his ass goes back to the login screen
+    if( !tRequest.user )
+    {
+        tResponse.redirect( '/login' );
+        return;
+    }
+    
+    const tempUserId = tRequest.user.id;
+
+    //find all convos of the current user
+    db.Conversation.findAll
+    (
+        {
+            where:
+            {
+                $or: { user1Id: tempUserId, user2Id: tempUserId }
+            }
+        }
+    ).then( renderConversations );
+
+    function renderConversations( tConversations )
+    {
+        if( !tConversations )
+        {
+            //you have no conversations :( )
+            tResponse.render( 'messages/conversations', { title: 'Conversations' } );
+        }
+        else
+        {
+            tResponse.render( 'messages/conversations', { title: 'Conversations', conversations: tConversations } );
+        }
+    }
+}
+
+
+
+//GET DIRECT CONVERSATION
+router.get( '/:userId/:conversationId', onGetConversation );
 
 //GET CONVERSATIONS BETWEEN TWO USERS THAT ALREADY EXISTS
-function onGetMessages( tRequest, tResponse )
+function onGetConversation( tRequest, tResponse )
 {  
     if( !tRequest.user )
     {
@@ -87,9 +129,9 @@ function onGetMessages( tRequest, tResponse )
 }
 
 //GET CONVERSATION BETWEEN CURRENT USER AND USER ID - OR CREATE ONE
-router.get( '/:userId', onGetConversation );
+router.get( '/:userId', onGetUserConversation );
 
-function onGetConversation( tRequest, tResponse )
+function onGetUserConversation( tRequest, tResponse )
 {
     //current user making the request
     if( !tRequest.user )
