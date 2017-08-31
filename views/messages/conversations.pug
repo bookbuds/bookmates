@@ -8,7 +8,7 @@ block content
         div.conversation-container
             each conversation in conversations
                 if( conversation.user1.id != currentUserId )
-                    a(href="/messages/#{conversation.id}")
+                    a(href="messages/" + conversation.id )
                         img( src=conversation.user1.profile_img_url )
                         p #{ conversation.user1.user_name }
                 if( conversation.user2.id != currentUserId )
