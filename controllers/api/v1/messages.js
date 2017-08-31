@@ -53,7 +53,7 @@ function onPostMessage( tRequest, tResponse ) {
     console.log(`messageRecip sent to the server was ${ tRequest.body.recipientId }`);
 
     db.Message.create( tempMessage );
-    tResponse.redirect( "/messages/" + tRequest.body.recipientId );
+    tResponse.redirect( "/messages/" + tRequest.body.recipientId + '/' + tRequest.body.conversationId );
 }
 
 //=========================
