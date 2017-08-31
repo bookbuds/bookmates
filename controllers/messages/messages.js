@@ -53,7 +53,8 @@ function onGetAllConversations( tRequest, tResponse )
 
 
 //GET DIRECT CONVERSATION
-router.get( '/:userId/:conversationId', onGetConversation );
+//(this used to be /:userId/:conversationId - but userId was never used and made url wierder)
+router.get( '/conversation/:conversationId', onGetConversation );
 
 //GET CONVERSATIONS BETWEEN TWO USERS THAT ALREADY EXISTS
 function onGetConversation( tRequest, tResponse )
