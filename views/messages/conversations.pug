@@ -1,21 +1,23 @@
 include ../layouts/layout.pug
 
 block content
-    h1 conversation, ye say?:
+    include ../layouts/includes/nav
+
     br
 
-    if messages
-        //- cache the convo id
-        //- - const convoId = messages[0].ConversationId; 
-        //- div.message-container
-        //-     each message in messages
-        //-         div.message-sender #{ message.author.user_name }:
-        //-         div.message-text #{ message.text }
-        //-         br
-
-
-        //-     form( action = "/api/v1/messages" method = "POST" )
-        //-         input( name ="messageText" type = textfield )
-        //-         input( name = "recipientId" value = bookMateId type = "hidden" )
-        //-         input( name = "conversationId" value = conversationId type = "hidden" )
-        //-         input( type = "submit" )
+    h1.conversation__title #{title}
+    if conversations
+        div.conversation__container
+            each conversation in conversations
+                if( conversation.user1.id != currentUserId )
+                    a.conversation_item(href="messages/" + conversation.id )
+                        img( src=conversation.user1.profile_img_url )
+                        div.conversation__label
+                            div.conversation__mail-icon
+                            h1 #{ conversation.user1.user_name }
+                if( conversation.user2.id != currentUserId )
+                    a.conversation_item(href="messages/" + conversation.id )
+                        img( src=conversation.user2.profile_img_url )
+                        div.conversation__label
+                            div.conversation__mail-icon
+                            h1 #{ conversation.user2.user_name }
