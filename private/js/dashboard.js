@@ -2,8 +2,8 @@
 // BUTTON HANDLERS
 //=========================
 $(document).ready(function () {
-    $(document).on("click", ".main__books-wrapper", event, getUsers);
-    $(document).on("click", ".main__books-wrapper", event, openSidebar);
+    $(document).on("click", ".books__image", event, getUsers);
+    $(document).on("click", ".books__image", event, openSidebar);
     $('.sidebar__button-close').on("click", event, closeSidebar);
 });
 
