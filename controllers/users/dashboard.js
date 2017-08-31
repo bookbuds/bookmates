@@ -14,7 +14,7 @@ function onDashboard(tRequest, tResponse) {
     let username = tRequest.user.user_name;
     let profileImage = tRequest.user.profile_img_url;
 
-    console.log(tRequest.user);
+    console.log(tRequest.user.id);
     db.User
       .findAll({
         where: { id: tRequest.user.id },
@@ -29,7 +29,6 @@ function onDashboard(tRequest, tResponse) {
         raw: true
       })
       .then(results => {
-          console.log(results)
         console.log(parseUsersBooks(results));
         let userInfo = parseUsersBooks(results);
 
