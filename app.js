@@ -3,7 +3,6 @@ const express = require( 'express' );
 const expressSession = require( 'express-session' );
 const passport = require( './config/passport.config' );
 const flash = require( 'connect-flash' );
-const webpack = require( 'webpack' );
 const path = require( 'path' );
 const favicon = require( 'serve-favicon' );
 const logger = require( 'morgan' );
@@ -28,6 +27,7 @@ app.set( 'view engine', 'pug' );
 app.use( express.static( path.join( __dirname, 'public' ) ) );
 
 if ( process.env.NODE_ENV == 'development' ) {
+    const webpack = require( 'webpack' );
     const config = require('./webpack.config.dev.js' );
     const compiler = webpack( config );
     app.use( webpackDevMiddleware( compiler, {
