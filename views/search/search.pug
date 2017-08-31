@@ -12,6 +12,15 @@ block content
                         img.books__image(src=book.img alt="image")
                         p.books__title= book.title
                         p.books__author by #{book.author}
+                        .books__status-wrapper
+                            span.books__status Status
+                            .books__status-options
+                                ul
+                                    li.books__status-option(data-status='wantToRead') Want To Read
+                                    li.books__status-option(data-status='reading') Reading
+                                    li.books__status-option(data-status='read') Read
+                            
+                    
         .sidebar__users
             .sidebar__button-close
                 i.fa.fa-times.fa-1x(aria-hidden="true")
