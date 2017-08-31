@@ -1,0 +1,23 @@
+include ../layouts/layout.pug
+
+block content
+    include ../layouts/includes/nav
+
+    br
+
+    h1.conversation__title #{title}
+    if conversations
+        div.conversation__container
+            each conversation in conversations
+                if( conversation.user1.id != currentUserId )
+                    a.conversation_item(href="messages/conversation/" + conversation.id )
+                        img( src=conversation.user1.profile_img_url )
+                        div.conversation__label
+                            div.conversation__mail-icon
+                            h1 #{ conversation.user1.user_name }
+                if( conversation.user2.id != currentUserId )
+                    a.conversation_item(href="messages/conversation/" + conversation.id )
+                        img( src=conversation.user2.profile_img_url )
+                        div.conversation__label
+                            div.conversation__mail-icon
+                            h1 #{ conversation.user2.user_name }

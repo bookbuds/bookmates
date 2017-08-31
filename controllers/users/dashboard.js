@@ -1,37 +1,45 @@
-const express = require( 'express' );
+const db = require("../../models");
+const isAuth = require("../../middleware/auth");
+const express = require("express");
 const router = express.Router();
-const db = require('../../models')
+const parseUsersBooks = require('../../helpers/parseUsersBooks');
 
 //=========================
 // GET DEFAULT
 //=========================
-router.get( '/',  onDashboard );
+router.get("/", onDashboard);
 
-function onDashboard( tRequest, tResponse )
-{
-    let id = '1'
-    let status = 'read'
+function onDashboard(tRequest, tResponse) {
+  if (tRequest.isAuthenticated()) {
+    let username = tRequest.user.user_name;
+    let profileImage = tRequest.user.profile_img_url;
+    db.User
+      .findAll({
+        where: { id: tRequest.user.id },
+        attributes: ['profile_img_url'],
+        include: [
+          {
+            model: db.Book,
+            required: true,
+            attributes: ["title", "author", "img_url"]
+          }
+        ],
+        raw: true
+      })
+      .then(results => {
+        console.log(parseUsersBooks(results));
+        let userInfo = parseUsersBooks(results);
 
-    db.userBooks.findAll({
-        where: {
-            id,
-            status
-        }
-    })
-
-    tResponse.render( 'users/dashboard' );
+        tResponse.render("users/dashboard", {
+          userInfo: userInfo,
+          username: username,
+          title: 'Bookshelf'
+        });
+      })
+      .catch(err => console.log(err));
+  } else {
+    tResponse.redirect("login");
+  }
 }
 
-//=========================
-// GET WITH USER ID
-//=========================
-//this will probably change once we have passport integrated
-router.get( '/:id',  onDashboardUser );
-
-function onDashboardUser( tRequest, tResponse )
-{
-    console.log( `the user id = ${ tRequest.params.id }` );
-    tResponse.render( 'users/dashboard' );
-}
-
-module.exports = router
+module.exports = router;

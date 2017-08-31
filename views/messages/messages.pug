@@ -1,0 +1,25 @@
+include ../layouts/layout.pug
+
+block content
+    include ../layouts/includes/nav
+    //- h1.messages__title Conversation with
+    br
+
+    if messages
+        div.message__container
+            div.message__display
+                each message in messages
+                    if message.author.id == user.id
+                        div.message__item--self
+                            span.message__label--self #{ message.author.user_name }:
+                            div.message__text--self #{ message.text }
+                    else
+                        div.message__item--other
+                            span.message__label--other #{ message.author.user_name }:
+                            div.message__text--other #{ message.text }
+
+            form( action = "/api/v1/messages" method = "POST" )
+                textarea.message__text-input( name ="messageText" )
+                input( name = "recipientId" value = bookMateId type = "hidden" )
+                input( name = "conversationId" value = conversationId type = "hidden" )
+                input.message__submit-button( type = "submit" )

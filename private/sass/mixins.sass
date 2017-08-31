@@ -1,0 +1,15 @@
+$phablet-width: 768px
+$tablet-width: 960px
+$desktop-width: 1024px
+
+=phablet 
+  @media (max-width: #{$phablet-width})
+    @content
+
+=tablet 
+  @media (max-width: #{$tablet-width})
+    @content
+
+=desktop
+  @media (min-width: #{$desktop-width})
+    @content

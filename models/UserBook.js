@@ -1,14 +1,14 @@
 //=========================
-// USER MODEL
+// USERBOOK MODEL
 //=========================
-function UserBooks( tSequelize, tDataTypes )
+function UserBook( sequelize, DataTypes )
 {
     //object with the data field assignments
-    const userBooksData = 
+    const userBookData = 
     {
         status:
         {
-            type: tDataTypes.STRING,
+            type: DataTypes.STRING,
             validate:
             {
                 len: [ 1, 140 ],
@@ -17,12 +17,12 @@ function UserBooks( tSequelize, tDataTypes )
         }
     }
 
-    const userBooks = tSequelize.define( "UserBooks", userBooksData );
+    const userBook = sequelize.define( "UserBook", userBookData );
 
-    return userBooks;
+    return userBook;
 }
 
 //=========================
 // EXPORTS
 //=========================
-module.exports = UserBooks;
+module.exports = UserBook;

@@ -1,0 +1,95 @@
+// block__element--modifier
+.message__container
+{
+    margin: 0 auto;
+    width: 80%;
+
+    @include phablet
+    {
+        width: 100%;
+    }
+}
+
+// for just holding the messages
+.message__display
+{
+    max-height: 400px;
+    overflow: auto;
+}
+
+.message__text-input
+{
+    text-align: left;
+    vertical-align: text-top;
+    margin: 20px 0px;
+    padding: 10px;
+    width: 100%;
+    height: 100px;
+    resize: none;
+    outline-color: $primary-color;
+}
+
+.message__submit-button
+{
+    border: 0px;
+    width: 100%;
+    height: 40px;
+
+    font-size: 1.333em;
+    font-weight: bold;
+    color: $color-white;
+    background-color: $primary-color;
+    
+    cursor: pointer;
+    transition: all .5s;
+}
+
+.message__submit-button:hover
+{
+    background-color: #5abbcc;
+}
+
+.message__submit-button:active
+{
+    transform: translateY( 2px );
+}
+
+.message__label--self, .message__label--other
+{
+    display: inline;
+    font-weight: bold;
+}
+.message__label--self
+{
+}
+
+.message__label--other
+{
+}
+
+.message__text--self, .message__text--other
+{
+    display: inline;
+    padding-left: 6px;
+}
+
+.message__text--self
+{
+
+}
+
+.message__text--other
+{
+
+}
+
+.message__item--other, .message__item--self
+{
+    padding: 10px;
+    margin: 2px 0px;
+}
+
+.message__item--other
+{
+    background-color: #f6f6f6;
+}

@@ -3,14 +3,21 @@ include ../layouts/layout
 block headerscripts
 
 block content
-    .login-container
-        form.login(method="post" action="/login")
-            div.form-group
-                label.input-label(for="username") Username
-                input(type="text" name="username" placeholder="Enter your username" maxlength="25" required)
-            div.form-group
-                label.input-label(for="password") Password
-                input(type="text" name="password" placeholder="Enter your password" maxlength="100"  required)
-            button(type="submit") Submit
+
+include ../layouts/includes/nav
+
+block content
+    .login__container
+        form.login__form(method="post" action="/login")
+            .login__logo-container
+                div.login__logo-image
+                p.login__logo-text BookMates
+            div.login__form-group
+                //- label.login__input-label(for="username") Username
+                input.login__input(type="text" name="username" placeholder="Enter your username" maxlength="25" required)
+            div.login__form-group
+                //- label.login__input-label(for="password") Password
+                input.login__input(type="text" name="password" placeholder="Enter your password" maxlength="100"  required)
+            button.login__button(type="submit") Login
 
 block footerscripts

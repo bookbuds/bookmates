@@ -3,17 +3,24 @@ include ../layouts/layout
 block headerscripts
 
 block content
-    .register-container
-        form(method="post" action="/register")
-            div.form-group
-                label(for="username") Username
-                input.form-control(type="text" name="username" placeholder="Pick a username" maxlength="25" value=(username === undefined ? '' : username) title="Username must be between 4-25 characters long." required)
-            div.form-group
-                label(for="email") Email
-                input.form-control(type="email" name="email" placeholder="Placeholder@email.com" value=(email === undefined ? '' : email) required)
-            div.form-group
-                label(for="password") Password
-                input.form-control(type="text" name="password" placeholder="Create a password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[^a-zA-Z0-9]).{8,}$" maxlength="100" title="Password must be between 8 and 100 characters and include one lowercase character, one uppercase character, a number, and a special character." required)
-            button(type="submit") Submit
+
+include ../layouts/includes/nav
+
+block content
+    .register__container
+        form.register__form(method="post" action="/register")
+            .register__logo-container
+                div.register__logo-image
+                p.register__logo-text BookMates
+            div.register__form-group
+                label.register__input-label(for="username") Username
+                input.register__input(type="text" name="username" placeholder="Pick a username" maxlength="25" value=(username === undefined ? '' : username) title="Username must be between 4-25 characters long." required)
+            div.register__form-group
+                label.register__input-label(for="email") Email
+                input.register__input(type="email" name="email" placeholder="Placeholder@email.com" value=(email === undefined ? '' : email) required)
+            div.register__form-group
+                label.register__input-label(for="password") Password
+                input.register__input(type="text" name="password" placeholder="Create a password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[^a-zA-Z0-9]).{8,}$" maxlength="100" title="Password must be between 8 and 100 characters and include one lowercase character, one uppercase character, a number, and a special character." required)
+            button.register__button(type="submit") Submit
 
 block footerscripts
