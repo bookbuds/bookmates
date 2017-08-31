@@ -8,7 +8,7 @@ block content
         .main__search-results
             each books in bookCollection
                 each book in books
-                    .main__books-wrapper(data-id='', data-title=book.title, data-author=book.author, data-imgurl=book.img)
+                    .main__books-wrapper(data-id='', data-book={title: book.title, author:book.author, img: book.img})
                         img.books__image(src=book.img alt="image")
                         p.books__title= book.title
                         p.books__author by #{book.author}
