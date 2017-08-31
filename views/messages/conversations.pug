@@ -1,16 +1,22 @@
 include ../layouts/layout.pug
 
 block content
-    h1 conversation, ye say?:
+    include ../layouts/includes/nav
+
     br
 
+    h1.conversation__title #{title}
     if conversations
-        div.conversation-container
+        div.conversation__container
             each conversation in conversations
                 if( conversation.user1.id != currentUserId )
-                    a(href="messages/" + conversation.id )
+                    a.conversation_item(href="messages/" + conversation.id )
                         img( src=conversation.user1.profile_img_url )
-                        p #{ conversation.user1.user_name }
+                        div.conversation__label
+                            div.conversation__mail-icon
+                            h1 #{ conversation.user1.user_name }
                 if( conversation.user2.id != currentUserId )
-                    img( src=conversation.user2.profile_img_url )
-                    p #{ conversation.user2.user_name }
+                    a.conversation_item(href="messages/" + conversation.id )
+                        img( src=conversation.user2.profile_img_url )
+                        div.conversation__label
+                            h1 #{ conversation.user2.user_name }
