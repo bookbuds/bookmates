@@ -1,0 +1,75 @@
+.background
+    position: absolute
+    top: 150px
+    bottom: 0
+    left: 0
+    right: 0
+    background-color: #3d979d
+
+.main__register-container
+    display: flex
+    align-items: flex-start
+    justify-content: flex-end
+    background-image: url("/build/images/hero.jpg")
+    background-repeat: no-repeat
+    background-position: left top
+    height: 100%
+
+.main__register-form
+    margin: 50px 100px
+    background-color: $color-grey
+    min-width: 340px
+    padding: 50px
+    border: 1px solid #dfdfdf
+    border-radius: 4px
+    box-shadow: 4px 4px 8px -4px rgba(17, 17, 17, 0.1)
+
+.main__register-logo-container
+    margin-bottom: 20px
+    display: flex
+    align-items: center
+
+.main__register-logo-image
+    display: inline-block
+    background: url("../images/bookmates_02.png")
+    background-size: contain
+    background-repeat: no-repeat
+    height: 80px
+    width: 98px
+    margin-right: 5px
+
+.main__register-logo-text
+    display: inline-block
+    font-size: 24px
+    font-weight: 100
+
+.main__register-form-group
+
+.main__register-input-label
+    font-weight: 200
+
+.main__register-input
+    width: 100%
+    height: 50px
+    margin: 15px 0
+    padding: 0 10px
+    outline: none
+    border: none
+    border-radius: 4px
+    box-shadow: 2px 2px 10px 0px rgba(17, 17, 17, 0.1)
+    &::placeholder
+        color: #cbcbcb
+
+.main__register-button
+    width: 100%
+    height: 50px
+    margin: 15px 0
+    outline: none
+    border: none
+    border-radius: 4px
+    box-shadow: 2px 2px 8px rgba(17, 17, 17, 0.1)
+    background-color: $primary-color
+    border: 1px solid lighten($primary-color, 30%)
+    font-size: 18px
+    font-weight: 100
+    font-family: "Roboto", sans-serif
