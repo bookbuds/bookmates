@@ -9,9 +9,9 @@ function User(sequelize, DataTypes) {
             {
                 type: DataTypes.STRING,
                 allowNull: false,
+                unique: true,
                 validate:
                 {
-                    unique: true,
                     len: [1, 140]
                 }
             },
@@ -20,9 +20,9 @@ function User(sequelize, DataTypes) {
             {
                 type: DataTypes.STRING,
                 allowNull: false,
+                unique: true,
                 validate:
                 {
-                    unique: true,
                     len: [3, 140]
                 }
 
