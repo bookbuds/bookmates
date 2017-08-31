@@ -1,30 +1,35 @@
-.login__container,
-.register__container
-    display: flex
-    align-items: center
-    justify-content: center
-    height: 100%
-    width: 100%
-    background-image: url("../images/hero-desaturated.jpg")
-    background-size: cover
+.background
+    position: absolute
+    top: 150px
+    bottom: 0
+    left: 0
+    right: 0
+    background-color: #3d979d
 
-.login__form,
-.register__form
-    background-color: #ebebeb
-    width: 340px
+.main__register-container
+    display: flex
+    align-items: flex-start
+    justify-content: flex-end
+    background-image: url("/build/images/hero.jpg")
+    background-repeat: no-repeat
+    background-position: left top
+    height: 100%
+
+.main__register-form
+    margin: 50px 100px
+    background-color: $color-grey
+    min-width: 340px
     padding: 50px
     border: 1px solid #dfdfdf
     border-radius: 4px
-    box-shadow: 2px 2px 10px 0px rgba(17, 17, 17, 0.1)
+    box-shadow: 4px 4px 8px -4px rgba(17, 17, 17, 0.1)
 
-.login__logo-container,
-.register__logo-container
+.main__register-logo-container
     margin-bottom: 20px
     display: flex
     align-items: center
 
-.login__logo-image,
-.register__logo-image
+.main__register-logo-image
     display: inline-block
     background: url("../images/bookmates_02.png")
     background-size: contain
@@ -33,21 +38,17 @@
     width: 98px
     margin-right: 5px
 
-.login__logo-text,
-.register__logo-text
+.main__register-logo-text
     display: inline-block
     font-size: 24px
     font-weight: 100
 
-.login__form-group,
-.register__form-group
+.main__register-form-group
 
-.login__input-label,
-.register__input-label
+.main__register-input-label
     font-weight: 200
 
-.login__input,
-.register__input
+.main__register-input
     width: 100%
     height: 50px
     margin: 15px 0
@@ -56,20 +57,19 @@
     border: none
     border-radius: 4px
     box-shadow: 2px 2px 10px 0px rgba(17, 17, 17, 0.1)
-
     &::placeholder
         color: #cbcbcb
 
-.login__button,
-.register__button
+.main__register-button
     width: 100%
     height: 50px
     margin: 15px 0
     outline: none
     border: none
     border-radius: 4px
-    box-shadow: 2px 2px 10px 0px rgba(17, 17, 17, 0.1)
-    background-color: #6fc7d7
+    box-shadow: 2px 2px 8px rgba(17, 17, 17, 0.1)
+    background-color: $primary-color
+    border: 1px solid lighten($primary-color, 30%)
     font-size: 18px
     font-weight: 100
     font-family: "Roboto", sans-serif

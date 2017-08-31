@@ -3,16 +3,29 @@
 //=========================
 $( document ).ready( function() 
 {
-    $( '.book-button' ).on( 'click', function( tEvent )
-    {
-        tEvent.preventDefault();
 
+    $( '.books__status-wrapper' ).on('click', function(e){
+        e.stopPropagation();
+        let $this = this
+        console.log($this)
+        $($this).children('.books__status-options').addClass('books__status-options--active')
+    })
+
+    $( '.books__status-options' ).on( 'click', function( tEvent )
+    {
+        tEvent.stopPropagation();
+
+        let $this = this
+        console.log($this)
         //get status that was passed on the button clicked
         const tempStatus = tEvent.target.dataset.status;
 
+        console.log(tempStatus)
         //define book(from the parent) and add status
-        let tempBook = JSON.parse( tEvent.target.parentElement.dataset.book );
-        addBookToUser( tempBook, tempStatus );
+        // let tempBook = JSON.parse( tEvent.target.parentElement.dataset.book );
+        // addBookToUser( tempBook, tempStatus );
+
+        $($this).removeClass('books__status-options--active')
     });
 
     $('.nav__books-search-input').on('keydown', function(e){

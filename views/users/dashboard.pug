@@ -10,7 +10,7 @@ block content
                 .profile__main-avatar
                     img(src=userInfo.profile_img_url alt="profile image")
                 .profile__main-info
-                    h3.profile__main-name= username
+                    h3.profile__main-name(data-id=userInfo.UserId)= username
                     p.profile__main-info Female
                     p.profile__main-location Atlanta, GA
         .main__books
@@ -23,8 +23,8 @@ block content
                             - var title = item['title']
                             - var author = item['author']
                             - var bookid = item['bookId']
-                                .main__books-wrapper(data-id=bookid, data-title=title, data-author=author, data-imgurl=imgurl)
-                                    img.books__image(src=imgurl alt="image")
+                                .main__books-wrapper
+                                    img.books__image(src=imgurl alt="image" data-id=bookid, data-title=title, data-author=author, data-imgurl=imgurl)
                                     p.books__title= title
                                     p.books__author by #{author}
                 if userInfo.bookCollection.read.length > 0
@@ -35,8 +35,8 @@ block content
                             - var title = item['title']
                             - var author = item['author']
                             - var bookid = item['bookId']
-                                .main__books-wrapper(data-id=bookid, data-title=title, data-author=author, data-imgurl=imgurl)
-                                    img.books__image(src=imgurl alt="image")
+                                .main__books-wrapper
+                                    img.books__image(src=imgurl alt="image" data-id=bookid, data-title=title, data-author=author, data-imgurl=imgurl)
                                     p.books__title= title
                                     p.books__author= author
                 if userInfo.bookCollection.wantToRead.length > 0
@@ -47,8 +47,8 @@ block content
                             - var title = item['title']
                             - var author = item['author']
                             - var bookid = item['bookId']
-                                .main__books-wrapper(data-id=bookid, data-title=title, data-author=author, data-imgurl=imgurl)
-                                    img.books__image(src=imgurl alt="image")
+                                .main__books-wrapper
+                                    img.books__image(src=imgurl alt="image" data-id=bookid, data-title=title, data-author=author, data-imgurl=imgurl)
                                     p.books__title= title
                                     p.books__author= author
         .sidebar__users

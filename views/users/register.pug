@@ -3,6 +3,10 @@ include ../layouts/layout
 block headerscripts
 
 block content
+
+include ../layouts/includes/nav
+
+block content
     .register__container
         form.register__form(method="post" action="/register")
             .register__logo-container
