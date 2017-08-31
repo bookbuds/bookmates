@@ -19,6 +19,7 @@ router.use( '/login', require( './users/login' ) );
 router.use( '/user', require( './users/user' ) );
 router.use( '/dashboard', require( './users/dashboard' ) );
 router.use( '/logout', require( './users/logout' ) );
+router.use('/developers', require('./developers'));
 
 //=========================
 // MESSAGE ROUTES
