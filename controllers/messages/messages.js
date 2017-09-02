@@ -1,6 +1,21 @@
 const express = require( 'express' );
 const router = express.Router();
-const db = require( '../../models' )
+const db = require( '../../models' );
+
+
+//=========================
+// AUTH (MESSAGES)
+//=========================
+//CHECK IF USER IS AUTH'D FOR THIS ROUTE
+function checkMessageAuth( tRequest )
+{
+    //sends to user to the log in page if they're not auth'd (no user exists on the request )
+    if( !tRequest.user )
+    {
+        tResponse.redirect( '/login' );
+        return;
+    }
+}
 
 //=========================
 // GET
@@ -53,7 +68,7 @@ function onGetAllConversations( tRequest, tResponse )
 
 
 //GET DIRECT CONVERSATION
-//(this used to be /:userId/:conversationId - but userId was never used and made url wierder)
+//userId refers to the OTHER user in the conversation (not the logged in person)
 router.get( '/:userId/:conversationId', onGetConversation );
 
 //GET CONVERSATIONS BETWEEN TWO USERS THAT ALREADY EXISTS
@@ -72,8 +87,6 @@ function onGetConversation( tRequest, tResponse )
     //cache the conversation id and other user so we can send that back
     const tempConversationId = tRequest.params.conversationId;
     const bookMateId = parseInt( tRequest.params.userId );
-
-    //console.log( bookMateId );
 
     //if there is a user that's been auth'd with a verified id
     //find the rquested convo by id and make sure its a valid one
@@ -106,6 +119,7 @@ function onGetConversation( tRequest, tResponse )
         }
     }
 
+    //get all conversations based on a convo id
     function getConvoMessages()
     {
         db.Message.findAll( 
@@ -127,7 +141,6 @@ function onGetConversation( tRequest, tResponse )
     //re-render the page with messages
     function renderMessages( tMessages )
     {
-        //console.log( JSON.stringify( tMessages, null, 2 ) );
         tResponse.render( 'messages/messages', { title: "Message", messages: tMessages, user: tRequest.user, conversationId: tempConversationId, bookMateId: bookMateId } );
     }
 
@@ -166,8 +179,8 @@ function onGetUserConversation( tRequest, tResponse )
         if( !tUser )
         {
             console.log( 'no user exists with that id' );
-            //go home for now( redirect to messages when there is a master page )
-            tResponse.redirect( '/' );
+            //redirect to messages master page (conversations)
+            tResponse.redirect( '/messages' );
             return;
         }
 
@@ -234,37 +247,3 @@ function onGetUserConversation( tRequest, tResponse )
 // EXPORTS
 //=========================
 module.exports = router;
-
-
-//=========================
-// GRAVEYARD
-//=========================
-// function onGetMessages( tRequest, tResponse )
-// {
-//     const tempOtherUser = tRequest.params.userId;
-
-//     //if there is a user that's been auth'd
-//     if( tRequest.user )
-//     {
-//         const tempId = tRequest.user.id;
-//         //get messages from db
-//         db.Message.findAll
-//         ( 
-//             { 
-//                 where: 
-//                 { 
-//                     $or:
-//                     [
-//                         { recipientId: tempId },
-//                         { authorId: tempId }
-//                     ],
-//                 },
-
-//                 include: 
-//                 [ 
-//                     { model: db.User, as: 'author', required: true, attributes: [ 'id', 'user_name' ] },
-//                     { model: db.User, as: 'recipient', required: true, attributes: [ 'id', 'user_name' ] }                    
-//                 ],
-//             }
-//         ).then( renderMessages );
-//     }
